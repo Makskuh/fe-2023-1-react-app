@@ -23,16 +23,56 @@ class Header extends React.Component {
 }
 
 class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+    };
+
+    // this.add = this.add.bind(this);
+  }
+
+  add = () => {
+    console.log('+');
+    // ++this.state.count;
+    // console.log(this.state.count);
+
+    this.setState({
+      count: this.state.count + 1,
+    });
+  };
+
+  subtract() {
+    console.log('-');
+  }
+
   render() {
     /*
       <p>Count is: 1<p>
       <button>Add</button>
       <button>Subtract</button>
     */
+    const { count } = this.state;
 
-    const p = React.createElement('p', {}, 'Count is: 1');
-    const add = React.createElement('button', {}, 'Add');
-    const subtract = React.createElement('button', {}, 'Subtract');
+    // this.props.count = 3; BAD
+
+    const p = React.createElement('p', {}, `Count is: ${count}`);
+    const add = React.createElement(
+      'button',
+      {
+        onClick: this.add,
+      },
+      'Add'
+    );
+
+    const subtract = React.createElement(
+      'button',
+      {
+        onClick: this.subtract,
+      },
+      'Subtract'
+    );
 
     const fragment = React.createElement(
       React.Fragment,
@@ -72,7 +112,7 @@ const container = React.createElement(
 //   'null' // 3+ параметрии - дочірні елементи, які будуть знаходитися всередині створюємого єлементу (не відображає null, undefined, false; кидає помилку якщо дають об'ект)
 // );
 
-root.render(container);
+root.render(counter1);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

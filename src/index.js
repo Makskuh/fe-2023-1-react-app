@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const elem = React.createElement(
   'header', // рядок з назвою html елементу
-  { id: 'header' }, // об'єкт з атрибутами до цього елементу
+  { id: 'header', className: 'class' }, // об'єкт з атрибутами до цього елементу
   'null' // 3+ параметрии - дочірні елементи, які будуть знаходитися всередині створюємого єлементу (не відображає null, undefined, false; кидає помилку якщо дають об'ект)
 );
 

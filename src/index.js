@@ -9,10 +9,15 @@ class Header extends React.Component {
     console.log(this.props);
     const { titleText } = this.props;
 
+    const h1 = React.createElement('h1', {}, 'My Site');
+
+    const nav = React.createElement('nav', {}, 'This is nav');
+
     return React.createElement(
       'header',
       { id: 'header', className: 'class', title: titleText },
-      'header'
+      h1,
+      nav
     );
   }
 }
@@ -23,13 +28,20 @@ const elem = React.createElement(Header, {
   titleText: 'this is how props can work',
 });
 
+const elem2 = React.createElement(Header, {
+  titleText: 'other title text',
+});
+
+// const container = React.createElement('div', {}, elem, elem2);
+const container = React.createElement(React.Fragment, {}, elem, elem2);
+
 // const elem = React.createElement(
 //   'header', // рядок з назвою html елементу
 //   { id: 'header', className: 'class' }, // об'єкт з "атрибутами" до цього елементу
 //   'null' // 3+ параметрии - дочірні елементи, які будуть знаходитися всередині створюємого єлементу (не відображає null, undefined, false; кидає помилку якщо дають об'ект)
 // );
 
-root.render(elem);
+root.render(container);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

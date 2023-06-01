@@ -22,6 +22,29 @@ class Header extends React.Component {
   }
 }
 
+class Counter extends React.Component {
+  render() {
+    /*
+      <p>Count is: 1<p>
+      <button>Add</button>
+      <button>Subtract</button>
+    */
+
+    const p = React.createElement('p', {}, 'Count is: 1');
+    const add = React.createElement('button', {}, 'Add');
+    const subtract = React.createElement('button', {}, 'Subtract');
+
+    const fragment = React.createElement(
+      React.Fragment,
+      null,
+      p,
+      add,
+      subtract
+    );
+    return fragment;
+  }
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const elem = React.createElement(Header, {
@@ -32,8 +55,16 @@ const elem2 = React.createElement(Header, {
   titleText: 'other title text',
 });
 
+const counter1 = React.createElement(Counter);
+
 // const container = React.createElement('div', {}, elem, elem2);
-const container = React.createElement(React.Fragment, {}, elem, elem2);
+const container = React.createElement(
+  React.Fragment,
+  {},
+  elem,
+  elem2,
+  counter1
+);
 
 // const elem = React.createElement(
 //   'header', // рядок з назвою html елементу

@@ -5,11 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 class Header extends React.Component {
-
   render() {
+    console.log(this.props);
+    const { titleText } = this.props;
+
     return React.createElement(
       'header',
-      { id: 'header', className: 'class' },
+      { id: 'header', className: 'class', title: titleText },
       'header'
     );
   }
@@ -17,11 +19,13 @@ class Header extends React.Component {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const elem = React.createElement(Header);
+const elem = React.createElement(Header, {
+  titleText: 'this is how props can work',
+});
 
 // const elem = React.createElement(
 //   'header', // рядок з назвою html елементу
-//   { id: 'header', className: 'class' }, // об'єкт з атрибутами до цього елементу
+//   { id: 'header', className: 'class' }, // об'єкт з "атрибутами" до цього елементу
 //   'null' // 3+ параметрии - дочірні елементи, які будуть знаходитися всередині створюємого єлементу (не відображає null, undefined, false; кидає помилку якщо дають об'ект)
 // );
 

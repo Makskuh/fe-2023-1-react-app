@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 
 class Greeting extends React.Component {
   render() {
@@ -17,7 +18,21 @@ class Greeting extends React.Component {
     // return <p>Hello {userName}!</p>;
 
     // v2.5
-    return <p>Hello {!name ? 'Guest' : name}!</p>;
+
+    // const stylesObj = {
+    //   backgroundColor: 'green',
+    //   padding: '20px'
+    // };
+
+    // return <p style={stylesObj} >Hello {!name ? 'Guest' : name}!</p>;
+
+    // return (
+    //   <p style={{ backgroundColor: 'green', padding: '20px' }}>
+    //     Hello {!name ? 'Guest' : name}!
+    //   </p>
+    // );
+
+    return <p className='greetingText'>Hello {!name ? 'Guest' : name}!</p>;
   }
 }
 

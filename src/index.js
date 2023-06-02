@@ -24,11 +24,19 @@ class Header extends React.Component {
     // const nav = <nav>This is nav</nav>;
 
     return (
-      <header id='header' className='class'>
+      <header id='header' className='class' title={titleText}>
         <h1>My Site</h1>
         <nav>This is nav</nav>
       </header>
     );
+  }
+}
+
+class Greeting extends React.Component {
+  render() {
+    const { name } = this.props;
+    console.log(name);
+    return <p>Hello {name}!</p>;
   }
 }
 
@@ -116,6 +124,8 @@ const container = React.createElement(
   counter1
 );
 
+const greeting1 = React.createElement(Greeting, { name: 'Test' });
+
 // const div = <div>This is div</div>;
 // const oldDiv = React.createElement('div', null, 'This is div');
 
@@ -127,7 +137,7 @@ const container = React.createElement(
 //   'null' // 3+ параметрии - дочірні елементи, які будуть знаходитися всередині створюємого єлементу (не відображає null, undefined, false; кидає помилку якщо дають об'ект)
 // );
 
-root.render(elem);
+root.render(greeting1);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

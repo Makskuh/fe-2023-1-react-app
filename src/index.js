@@ -9,15 +9,25 @@ class Header extends React.Component {
     console.log(this.props);
     const { titleText } = this.props;
 
-    const h1 = React.createElement('h1', {}, 'My Site');
+    // const h1 = React.createElement('h1', {}, 'My Site');
 
-    const nav = React.createElement('nav', {}, 'This is nav');
+    // const nav = React.createElement('nav', {}, 'This is nav');
 
-    return React.createElement(
-      'header',
-      { id: 'header', className: 'class', title: titleText },
-      h1,
-      nav
+    // return React.createElement(
+    //   'header',
+    //   { id: 'header', className: 'class', title: titleText },
+    //   h1,
+    //   nav
+    // );
+
+    // const h1 = <h1>My Site</h1>;
+    // const nav = <nav>This is nav</nav>;
+
+    return (
+      <header id='header' className='class'>
+        <h1>My Site</h1>
+        <nav>This is nav</nav>
+      </header>
     );
   }
 }
@@ -106,13 +116,18 @@ const container = React.createElement(
   counter1
 );
 
+// const div = <div>This is div</div>;
+// const oldDiv = React.createElement('div', null, 'This is div');
+
+// console.log(div);
+// console.log(oldDiv);
 // const elem = React.createElement(
 //   'header', // рядок з назвою html елементу
 //   { id: 'header', className: 'class' }, // об'єкт з "атрибутами" до цього елементу
 //   'null' // 3+ параметрии - дочірні елементи, які будуть знаходитися всередині створюємого єлементу (не відображає null, undefined, false; кидає помилку якщо дають об'ект)
 // );
 
-root.render(counter1);
+root.render(elem);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

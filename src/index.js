@@ -124,7 +124,9 @@ const container = React.createElement(
   counter1
 );
 
-const greeting1 = React.createElement(Greeting, { name: 'Test' });
+// const greeting1 = React.createElement(Greeting, { name: 'Test' });
+// const greeting1 = <Greeting name='Test'></Greeting>;
+const greeting1 = <Greeting name='Test' />;
 
 // const div = <div>This is div</div>;
 // const oldDiv = React.createElement('div', null, 'This is div');

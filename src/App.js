@@ -6,8 +6,9 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <Greeting name='User' />
+        <Greeting name='User'  />
         <Greeting name='Anton' />
+        <Greeting />
       </div>
     );
   }

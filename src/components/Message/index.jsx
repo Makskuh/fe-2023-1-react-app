@@ -18,7 +18,6 @@ class Message extends React.Component {
   render() {
     const { text, author, isImportant } = this.props;
     const { isRead } = this.state;
-
     const style = {
       padding: '20px',
       backgroundColor: isImportant ? 'red' : 'black',
@@ -35,7 +34,7 @@ class Message extends React.Component {
         <p>Message: {text}</p>
         <button onClick={this.handleClick}>Read message</button>
         {/* {isRead ? readStatusElem : false } */}
-        { isRead && readStatusElem }
+        {isRead && readStatusElem}
       </article>
     );
   }

@@ -1,33 +1,94 @@
 import React from 'react';
 import Message from './components/Message';
 
-const data = {
-  id: 1,
-  title: 'Best device ever',
-  mark: 9.5,
-  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  authorName: 'User Userenko',
-  authorImg:
-    'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress',
-  pros: ['cheap', 'efficient', 'feeds my cat'],
-  cons: ['bulky, cant place 2 of them in my house'],
-};
+const messagesData = [
+  {
+    id: 1,
+    text: 'Message 1 text (unimportant)',
+    author: 'Author 1',
+    isImportant: false,
+  },
+  {
+    id: 2,
+    text: 'Message 2 text (important)',
+    author: 'Author 2',
+    isImportant: true,
+  },
+  {
+    id: 3,
+    text: 'Message 3 text (important)',
+    author: 'Author 3',
+    isImportant: true,
+  },
+  {
+    id: 4,
+    text: 'This is new',
+    author: 'Author 4',
+    isImportant: false,
+  },
+];
+
+// JSON.parse(JSON.stringify(messagesData))
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      messages: structuredClone(messagesData),
+      isDirectSort: true,
+    };
+  }
+
+  sortMessages = () => {
+    const { messages, isDirectSort } = this.state;
+
+    /*
+      1. взяти масив с даними
+      2. відсортувати його
+      3. оновити стан
+    */
+
+    const copy = structuredClone(messages);
+
+    copy.sort((a, b) => {
+      if (isDirectSort) {
+        // якщо треба айді по спаданню
+        return b.id - a.id;
+      }
+
+      // якщо треба айді по зростанню
+      return a.id - b.id;
+    });
+
+    this.setState({
+      messages: copy,
+      isDirectSort: !isDirectSort,
+    });
+  };
+
   render() {
+    const { messages } = this.state;
+
+    const messagesArray = messages.map((message, index, arr) => {
+      return (
+        // <li key={message.id}>
+        <Message
+          key={message.id}
+          text={message.text}
+          author={message.author}
+          isImportant={message.isImportant}
+        />
+        // </li>
+      );
+    });
+
     return (
       <>
-        <Message text={'Message 1 text (unimportant)'} author={'Author 1'} />
-        <Message
-          text={'Message 2 text (important)'}
-          author={'Author 2'}
-          isImportant={true}
-        />
-        <Message
-          text={'Message 3 text (important)'}
-          author={'Author 3'}
-          isImportant
-        />
+        <div>
+          <button onClick={this.sortMessages}>Reverse order</button>
+        </div>
+        {messagesArray}
       </>
     );
   }

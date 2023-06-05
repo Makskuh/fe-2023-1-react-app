@@ -6,7 +6,7 @@ function Review(props) {
   const { title, mark, text, authorName, authorImg } = reviewData;
   return (
     <div className='commentsContainer'>
-      <div class='commentWrapper'>
+      <div className='commentWrapper'>
         <article className='commentArticle'>
           <div className='authorData'>
             <div className='imageWrapper'>

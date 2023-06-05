@@ -1,7 +1,5 @@
 import React from 'react';
-import Greeting from './components/Greeting';
-import Header from './components/Header';
-import Review from './components/Review';
+import Message from './components/Message';
 
 const data = {
   id: 1,
@@ -17,12 +15,19 @@ const data = {
 
 class App extends React.Component {
   render() {
-
     return (
       <>
-        <Greeting name='User' />
-        <Review reviewData={data} />
-        <Greeting />
+        <Message text={'Message 1 text (unimportant)'} author={'Author 1'} />
+        <Message
+          text={'Message 2 text (important)'}
+          author={'Author 2'}
+          isImportant={true}
+        />
+        <Message
+          text={'Message 3 text (important)'}
+          author={'Author 3'}
+          isImportant
+        />
       </>
     );
   }

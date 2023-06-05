@@ -67,21 +67,19 @@ class App extends React.Component {
     });
   };
 
+  mapMessages = (message, index, arr) => (
+    <Message
+      key={message.id}
+      text={message.text}
+      author={message.author}
+      isImportant={message.isImportant}
+    />
+  );
+
   render() {
     const { messages } = this.state;
 
-    const messagesArray = messages.map((message, index, arr) => {
-      return (
-        // <li key={message.id}>
-        <Message
-          key={message.id}
-          text={message.text}
-          author={message.author}
-          isImportant={message.isImportant}
-        />
-        // </li>
-      );
-    });
+    const messagesArray = messages.map(this.mapMessages);
 
     return (
       <>

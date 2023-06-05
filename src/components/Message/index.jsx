@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 
 class Message extends React.Component {
   constructor(props) {
@@ -18,18 +19,11 @@ class Message extends React.Component {
   render() {
     const { text, author, isImportant } = this.props;
     const { isRead } = this.state;
-    const style = {
-      padding: '20px',
-      backgroundColor: isImportant ? 'red' : 'black',
-      color: isImportant ? 'black' : 'white',
-      border: '5px solid blue',
-      margin: '10px 0px',
-    };
 
     const readStatusElem = <p>Message is read</p>;
 
     return (
-      <article style={style}>
+      <article className={`message${isImportant ? ' isImportant' : ''}`}>
         <p>Author: {author}</p>
         <p>Message: {text}</p>
         <button onClick={this.handleClick}>Read message</button>

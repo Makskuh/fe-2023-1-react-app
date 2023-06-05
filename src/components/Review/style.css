@@ -1,0 +1,71 @@
+.mainHeading {
+  font-size: 3rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.commentsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.commentWrapper {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  max-width: 800px;
+}
+
+.commentArticle {
+}
+
+.authorData {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid lightgray;
+  padding: 15px 25px;
+}
+
+.authorName {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.imageWrapper {
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.authorImg {
+  display: block;
+  width: 100%;
+  height: inherit;
+  object-fit: cover;
+  /* object-position: 0 -20px; */
+}
+
+.commentBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 25px;
+}
+
+.commentTitle {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.mark {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.commentText {
+  line-height: 1.3;
+}

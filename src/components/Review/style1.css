@@ -1,0 +1,82 @@
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: auto;
+  width: 60%;
+  display: grid;
+  grid-template-areas:
+    " userImg userName  userMark"
+    " . userTitle  ."
+    "userText userText userText"
+    "userPros .  userCons"
+    " . . likesCounter";
+  padding: 15px 20px 10px 20px;
+  border: 1px solid black;
+  box-shadow: 1px 1px 1px #333;
+}
+
+.userTitle {
+  grid-area: userTitle;
+  font-size: calc(16px + 10 * (100vw - 320px) / 880);
+}
+.userMark {
+  grid-area: userMark;
+  font-size: calc(16px + 6 * (100vw - 320px) / 880);
+}
+.userText {
+  grid-area: userText;
+  font-size: calc(16px + 4 * (100vw - 320px) / 880);
+}
+.userName {
+  grid-area: userName;
+  font-size: calc(16px + 12 * (100vw - 320px) / 880);
+}
+.goodProd {
+  grid-area: userPros;
+  font-size: calc(12px + 6 * (100vw - 320px) / 880);
+}
+.goodCons {
+  grid-area: userCons;
+  font-size: calc(12px + 6 * (100vw - 320px) / 880);
+  word-spacing: 10px;
+}
+.userImg {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.featuresTitle {
+  font-size: calc(12px + 8 * (100vw - 320px) / 880);
+  font-weight: 600;
+}
+.userMark {
+  display: inline-block;
+}
+.counterContainer {
+  grid-area: likesCounter;
+  display: flex;
+}
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    display: grid;
+    text-align: center;
+    grid-template-areas:
+      "userImg"
+      "userName"
+      "userMark"
+      "userTitle"
+      "userMark"
+      "userText"
+      "userPros"
+      "userCons"
+      "likesCounter";
+
+    padding: 20px 40px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px #333;
+  }
+}

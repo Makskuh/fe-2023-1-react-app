@@ -17,13 +17,13 @@ const data = {
 
 class App extends React.Component {
   render() {
+
     return (
-      <div>
-        {/* <Header data={data} /> */}
+      <>
         <Greeting name='User' />
         <Review reviewData={data} />
         <Greeting />
-      </div>
+      </>
     );
   }
 }

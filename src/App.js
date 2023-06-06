@@ -70,20 +70,43 @@ class App extends React.Component {
   mapMessages = (message, index, arr) => (
     <Message
       key={message.id}
+      id={message.id}
       text={message.text}
       author={message.author}
       isImportant={message.isImportant}
+      makeImportant={this.makeImportant}
     />
   );
 
-  render() {
+  makeImportant = (id) => {
     const { messages } = this.state;
+
+    const newMessages = [];
+
+    for(let i = 0; i < messages.length; i++) {
+      const message = structuredClone(messages[i]);
+
+      if(message.id === id) {
+        message.isImportant = true;
+      }
+
+      newMessages.push(message);
+    }
+
+    this.setState({
+      messages: newMessages
+    });
+  }
+
+  render() {
+    const { messages, isDirectSort } = this.state;
 
     const messagesArray = messages.map(this.mapMessages);
 
     return (
       <>
         <div>
+          <p>Sort order is {isDirectSort ? 'direct': 'reversed'}</p>
           <button onClick={this.sortMessages}>Reverse order</button>
         </div>
         {messagesArray}

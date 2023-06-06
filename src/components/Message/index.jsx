@@ -16,8 +16,13 @@ class Message extends React.Component {
     });
   };
 
+  handleImportant = () => {
+    const { makeImportant, id } = this.props;
+    makeImportant(id);
+  };
+
   render() {
-    const { text, author, isImportant } = this.props;
+    const { text, author, isImportant, makeImportant, id } = this.props;
     const { isRead } = this.state;
 
     const readStatusElem = <p>Message is read</p>;
@@ -27,6 +32,7 @@ class Message extends React.Component {
         <p>Author: {author}</p>
         <p>Message: {text}</p>
         <button onClick={this.handleClick}>Read message</button>
+        <button onClick={this.handleImportant}>Make Importand</button>
         {/* {isRead ? readStatusElem : false } */}
         {isRead && readStatusElem}
       </article>

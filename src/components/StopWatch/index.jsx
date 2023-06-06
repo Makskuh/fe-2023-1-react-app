@@ -7,10 +7,14 @@ class StopWatch extends Component {
     this.state = {
       currentTime: 0,
     };
+    this.intervalId = null;
   }
 
   start = () => {
     // const { currentTime } = this.state;
+    if(this.intervalId) {
+      return;
+    }
 
     this.intervalId = setInterval(() => {
       console.log('interval')

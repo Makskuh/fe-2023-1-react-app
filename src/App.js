@@ -1,5 +1,6 @@
 import React from 'react';
 import Message from './components/Message';
+import ImportantMessages from './components/ImportantMessages';
 
 const messagesData = [
   {
@@ -98,9 +99,11 @@ class App extends React.Component {
     });
   }
 
+  filterImportantMessages = (message) => message.isImportant;
+
   render() {
     const { messages, isDirectSort } = this.state;
-
+    const importantMessagesArr = messages.filter(this.filterImportantMessages);
     const messagesArray = messages.map(this.mapMessages);
 
     return (
@@ -108,6 +111,9 @@ class App extends React.Component {
         <div>
           <p>Sort order is {isDirectSort ? 'direct': 'reversed'}</p>
           <button onClick={this.sortMessages}>Reverse order</button>
+        </div>
+        <div>
+          <ImportantMessages messages={importantMessagesArr} />
         </div>
         {messagesArray}
       </>

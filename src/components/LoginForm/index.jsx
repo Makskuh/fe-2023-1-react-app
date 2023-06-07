@@ -34,8 +34,14 @@ class LoginForm extends Component {
     });
   };
 
+  handlePasswordChange = (e) => {
+    this.setState({
+      password: e.target.value,
+    });
+  };
+
   render() {
-    const { email } = this.state;
+    const { email, password } = this.state;
 
     return (
       <form onSubmit={this.submitHandler} className='form'>
@@ -48,10 +54,12 @@ class LoginForm extends Component {
           value={email}
         />
         <input
+          onChange={this.handlePasswordChange}
           className='input'
           type='password'
           name='password'
           placeholder='Password'
+          value={password}
         />
         <button className='btn'>Submit</button>
       </form>

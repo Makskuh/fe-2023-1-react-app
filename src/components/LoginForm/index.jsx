@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import RadioInput from './RadioInput';
 
 function loginUser(email, password) {
   if (!email || !password) {
@@ -97,26 +98,18 @@ class LoginForm extends Component {
         <textarea name='comment' value={comment} onChange={this.handleChange} />
         <fieldset>
           <legend>Choose your gender:</legend>
-          <label>
-            <input
-              type='radio'
-              name='gender'
-              checked={gender === 'male'}
-              value='male'
-              onChange={this.handleChange}
-            />
-            Male
-          </label>
-          <label>
-            <input
-              type='radio'
-              name='gender'
-              checked={gender === 'female'}
-              value='female'
-              onChange={this.handleChange}
-            />
-            Female
-          </label>
+          <RadioInput
+            handleChange={this.handleChange}
+            value='male'
+            stateValue={gender}
+            radioText='Male'
+          />
+          <RadioInput
+            handleChange={this.handleChange}
+            value='female'
+            stateValue={gender}
+            radioText='Female'
+          />
         </fieldset>
         <select
           name='accountType'

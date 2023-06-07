@@ -9,13 +9,18 @@ function loginUser(email, password) {
   alert(`User is logged in!`);
 }
 
+const initialValues = {
+  email: '',
+  password: '',
+  isRemembered: false,
+};
+
 class LoginForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
-      password: '',
+      ...initialValues,
     };
   }
 
@@ -26,6 +31,9 @@ class LoginForm extends Component {
 
     // loginUser(e.target.elements.mail.value, e.target.elements.password.value);
     loginUser(email, password);
+    // e.target.reset();
+
+    this.setState({ ...initialValues });
   };
 
   handleEmailChange = (e) => {

@@ -55,9 +55,11 @@ class LoginForm extends Component {
     this.setState({ ...initialValues });
   };
 
-  handleChange = ({ target: { name, value } }) => {
+  handleChange = ({ target: { name, value, checked, type } }) => {
+    const newValue = type === 'checkbox' ? checked : value;
+
     this.setState({
-      [name]: value,
+      [name]: newValue,
     });
   };
 
@@ -68,7 +70,7 @@ class LoginForm extends Component {
   );
 
   render() {
-    const { email, password, comment, accountType } = this.state;
+    const { email, password, comment, accountType, isRemembered } = this.state;
 
     const options = accountTypesArr.map(this.mapOptions);
 
@@ -98,6 +100,15 @@ class LoginForm extends Component {
         >
           {options}
         </select>
+        <label>
+          <input
+            type='checkbox'
+            name='isRemembered'
+            checked={isRemembered}
+            onChange={this.handleChange}
+          />{' '}
+          Remember me
+        </label>
         <button className='btn'>Submit</button>
       </form>
     );

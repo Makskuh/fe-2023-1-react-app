@@ -36,15 +36,9 @@ class LoginForm extends Component {
     this.setState({ ...initialValues });
   };
 
-  handleEmailChange = (e) => {
+  handleChange = ({ target: { name, value } }) => {
     this.setState({
-      email: e.target.value,
-    });
-  };
-
-  handlePasswordChange = (e) => {
-    this.setState({
-      password: e.target.value,
+      [name]: value,
     });
   };
 
@@ -54,15 +48,15 @@ class LoginForm extends Component {
     return (
       <form onSubmit={this.submitHandler} className='form'>
         <input
-          onChange={this.handleEmailChange}
+          onChange={this.handleChange}
           className='input'
           type='email'
-          name='mail'
+          name='email'
           placeholder='Email'
           value={email}
         />
         <input
-          onChange={this.handlePasswordChange}
+          onChange={this.handleChange}
           className='input'
           type='password'
           name='password'

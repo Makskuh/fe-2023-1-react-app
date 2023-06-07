@@ -32,6 +32,7 @@ const initialValues = {
   isRemembered: false,
   comment: '',
   accountType: ACCOUNT_TYPES.MODER.OPTION_VALUE,
+  gender: 'female',
 };
 
 class LoginForm extends Component {
@@ -70,7 +71,8 @@ class LoginForm extends Component {
   );
 
   render() {
-    const { email, password, comment, accountType, isRemembered } = this.state;
+    const { email, password, comment, accountType, isRemembered, gender } =
+      this.state;
 
     const options = accountTypesArr.map(this.mapOptions);
 
@@ -93,6 +95,29 @@ class LoginForm extends Component {
           value={password}
         />
         <textarea name='comment' value={comment} onChange={this.handleChange} />
+        <fieldset>
+          <legend>Choose your gender:</legend>
+          <label>
+            <input
+              type='radio'
+              name='gender'
+              checked={gender === 'male'}
+              value='male'
+              onChange={this.handleChange}
+            />
+            Male
+          </label>
+          <label>
+            <input
+              type='radio'
+              name='gender'
+              checked={gender === 'female'}
+              value='female'
+              onChange={this.handleChange}
+            />
+            Female
+          </label>
+        </fieldset>
         <select
           name='accountType'
           onChange={this.handleChange}

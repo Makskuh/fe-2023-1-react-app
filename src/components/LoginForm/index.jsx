@@ -9,10 +9,18 @@ function loginUser(email, password) {
   alert(`User is logged in!`);
 }
 
+const ACCOUNT_TYPES = {
+  BASIC: 'basic',
+  MODER: 'moder',
+  ADMIN: 'admin'
+}
+
 const initialValues = {
   email: '',
   password: '',
   isRemembered: false,
+  comment: '',
+  accountType: ACCOUNT_TYPES.MODER,
 };
 
 class LoginForm extends Component {
@@ -43,7 +51,7 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, comment, accountType } = this.state;
 
     return (
       <form onSubmit={this.submitHandler} className='form'>
@@ -63,6 +71,16 @@ class LoginForm extends Component {
           placeholder='Password'
           value={password}
         />
+        <textarea name='comment' value={comment} onChange={this.handleChange} />
+        <select
+          name='accountType'
+          onChange={this.handleChange}
+          value={accountType}
+        >
+          <option value={ACCOUNT_TYPES.BASIC}>Basic</option>
+          <option value={ACCOUNT_TYPES.MODER}>Moderator</option>
+          <option value={ACCOUNT_TYPES.ADMIN}>Administrator</option>
+        </select>
         <button className='btn'>Submit</button>
       </form>
     );

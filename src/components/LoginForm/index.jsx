@@ -10,17 +10,28 @@ function loginUser(email, password) {
 }
 
 const ACCOUNT_TYPES = {
-  BASIC: 'basic',
-  MODER: 'moder',
-  ADMIN: 'admin'
-}
+  BASIC: {
+    OPTION_VALUE: 'basic',
+    TEXT_VALUE: 'Basic',
+  },
+  MODER: {
+    OPTION_VALUE: 'moder',
+    TEXT_VALUE: 'Moderator',
+  },
+  ADMIN: {
+    OPTION_VALUE: 'admin',
+    TEXT_VALUE: 'Administrator',
+  },
+};
+
+const accountTypesArr = Object.values(ACCOUNT_TYPES);
 
 const initialValues = {
   email: '',
   password: '',
   isRemembered: false,
   comment: '',
-  accountType: ACCOUNT_TYPES.MODER,
+  accountType: ACCOUNT_TYPES.MODER.OPTION_VALUE,
 };
 
 class LoginForm extends Component {
@@ -50,8 +61,16 @@ class LoginForm extends Component {
     });
   };
 
+  mapOptions = (ACCOUNT_TYPE) => (
+    <option key={ACCOUNT_TYPE.OPTION_VALUE} value={ACCOUNT_TYPE.OPTION_VALUE}>
+      {ACCOUNT_TYPE.TEXT_VALUE}
+    </option>
+  );
+
   render() {
     const { email, password, comment, accountType } = this.state;
+
+    const options = accountTypesArr.map(this.mapOptions);
 
     return (
       <form onSubmit={this.submitHandler} className='form'>
@@ -77,9 +96,7 @@ class LoginForm extends Component {
           onChange={this.handleChange}
           value={accountType}
         >
-          <option value={ACCOUNT_TYPES.BASIC}>Basic</option>
-          <option value={ACCOUNT_TYPES.MODER}>Moderator</option>
-          <option value={ACCOUNT_TYPES.ADMIN}>Administrator</option>
+          {options}
         </select>
         <button className='btn'>Submit</button>
       </form>

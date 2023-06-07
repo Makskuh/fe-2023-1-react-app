@@ -24,6 +24,11 @@ class StopWatch extends Component {
     }, 1000);
   };
 
+  stop = () => {
+    clearInterval(this.intervalId);
+    this.intervalId = null;
+  }
+
   componentDidMount() {
     console.log('componentDidMount');
     this.start();
@@ -35,7 +40,7 @@ class StopWatch extends Component {
 
   componentWillUnmount() {
     console.log('componentWillUnmount');
-    clearInterval(this.intervalId);
+    this.stop();
   }
 
   render() {
@@ -48,7 +53,7 @@ class StopWatch extends Component {
       <section>
         <p>{currentTime}</p>
         <button onClick={this.start}>Start</button>
-        <button>Stop</button>
+        <button onClick={this.stop}>Stop</button>
       </section>
     );
   }

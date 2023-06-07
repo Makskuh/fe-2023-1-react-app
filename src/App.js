@@ -1,12 +1,13 @@
 import React from 'react';
 import StopWatch from './components/StopWatch';
+import LoginForm from './components/LoginForm';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isVisible: true,
+      isVisible: false,
     };
   }
 
@@ -22,6 +23,7 @@ class App extends React.Component {
       <>
         <button onClick={this.handleIsVisible}>Toggle Visibility</button>
         {isVisible && <StopWatch />}
+        <LoginForm />
       </>
     );
   }

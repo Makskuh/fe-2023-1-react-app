@@ -1,0 +1,112 @@
+:root {
+  --text-color: green;
+  --md: 768px;
+}
+
+.text {
+  color: var(--text-color);
+}
+
+$text-color: orange;
+$md: 768px;
+
+.other-text {
+  color: $text-color;
+}
+
+@media screen and (min-width: $md) {
+  .text {
+      display:flex;
+  }
+}
+/*
+.imgWrapper {
+  width: 500px;
+  height: 500px;
+}
+
+
+.imgWrapper > .img {
+  display: block;
+  width: 100%;
+  height: inherit;
+}
+*/
+
+.imgWrapper {
+  width: 500px;
+  height: 500px;
+  
+  > .img {
+      display: block;
+      width: 100%;
+      height: inherit;
+  }
+}
+
+.btn {
+  background-color: red;
+  padding: 20px;
+  
+  &:hover {
+      background-color: green;
+  }
+  
+  &-text {
+      color: red;
+      
+      &--value {
+          display: flex;
+      }
+      
+  }
+  
+  @media screen and (min-width: 568px) {
+      font-size: 14px;
+  }
+}
+
+%input {
+ padding: 10px;
+ border-radius: 10px; 
+}
+
+.input {
+  @extend %input;
+  
+  font-style: italic;
+}
+
+.loginInput {
+  @extend %input;
+  
+  background-color: dodgerblue;
+}
+
+$basic-fonts-size: 16px;
+
+.heading {
+  font-size: $basic-fonts-size * 2;
+  
+  @media (max-width: 576px) {
+      font-size: $basic-fonts-size * 1.4;
+  }
+}
+
+@mixin flex($direction, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+.conteiner-1 {
+  @include flex(row);
+}
+
+.conteiner-2 {
+  @include flex(column, wrap-reverse);
+}
+
+.conteiner-3 {
+  @include flex(column, wrap-reverse);
+}

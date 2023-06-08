@@ -2,6 +2,10 @@
   padding: 10px;
   text-align: right;
   color: red;
+
+  @media screen and (max-width: 768px) {
+    color: blue;
+  }
 }
 
 .btn{

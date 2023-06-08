@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './style.css';
 import RadioInput from './RadioInput';
+import CONSTANTS from '../../constants';
+const { ACCOUNT_TYPES } = CONSTANTS;
 
 function loginUser(email, password) {
   if (!email || !password) {
@@ -9,21 +11,6 @@ function loginUser(email, password) {
 
   alert(`User is logged in!`);
 }
-
-const ACCOUNT_TYPES = {
-  BASIC: {
-    OPTION_VALUE: 'basic',
-    TEXT_VALUE: 'Basic',
-  },
-  MODER: {
-    OPTION_VALUE: 'moder',
-    TEXT_VALUE: 'Moderator',
-  },
-  ADMIN: {
-    OPTION_VALUE: 'admin',
-    TEXT_VALUE: 'Administrator',
-  },
-};
 
 const accountTypesArr = Object.values(ACCOUNT_TYPES);
 

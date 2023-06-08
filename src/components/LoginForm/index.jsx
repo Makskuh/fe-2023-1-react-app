@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 import RadioInput from './RadioInput';
 import CONSTANTS from '../../constants';
+import Select from './Select';
 const { ACCOUNT_TYPES } = CONSTANTS;
 
 function loginUser(email, password) {
@@ -52,17 +53,9 @@ class LoginForm extends Component {
     });
   };
 
-  mapOptions = (ACCOUNT_TYPE) => (
-    <option key={ACCOUNT_TYPE.OPTION_VALUE} value={ACCOUNT_TYPE.OPTION_VALUE}>
-      {ACCOUNT_TYPE.TEXT_VALUE}
-    </option>
-  );
-
   render() {
     const { email, password, comment, accountType, isRemembered, gender } =
       this.state;
-
-    const options = accountTypesArr.map(this.mapOptions);
 
     return (
       <form onSubmit={this.submitHandler} className='form'>
@@ -98,13 +91,11 @@ class LoginForm extends Component {
             radioText='Female'
           />
         </fieldset>
-        <select
-          name='accountType'
-          onChange={this.handleChange}
+        <Select
           value={accountType}
-        >
-          {options}
-        </select>
+          handleChange={this.handleChange}
+          optionsArr={accountTypesArr}
+        />
         <label>
           <input
             type='checkbox'

@@ -1,5 +1,5 @@
 import { Component } from 'react';
-
+import styles from './style.module.css';
 class StopWatch extends Component {
   constructor(props) {
     super(props);
@@ -12,12 +12,12 @@ class StopWatch extends Component {
 
   start = () => {
     // const { currentTime } = this.state;
-    if(this.intervalId) {
+    if (this.intervalId) {
       return;
     }
 
     this.intervalId = setInterval(() => {
-      console.log('interval')
+      console.log('interval');
       this.setState({
         currentTime: this.state.currentTime + 1,
       });
@@ -27,7 +27,7 @@ class StopWatch extends Component {
   stop = () => {
     clearInterval(this.intervalId);
     this.intervalId = null;
-  }
+  };
 
   componentDidMount() {
     console.log('componentDidMount');
@@ -50,10 +50,14 @@ class StopWatch extends Component {
     // this.start();
 
     return (
-      <section>
-        <p>{currentTime}</p>
-        <button onClick={this.start}>Start</button>
-        <button onClick={this.stop}>Stop</button>
+      <section className={styles.container}>
+        <p className={styles.display}>{currentTime}</p>
+        <button className={`${styles.btn} ${styles.startBtn}`} onClick={this.start}>
+          Start
+        </button>
+        <button className={`${styles.btn} ${styles.stopBtn}`} onClick={this.stop}>
+          Stop
+        </button>
       </section>
     );
   }

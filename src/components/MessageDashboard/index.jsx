@@ -1,6 +1,7 @@
-import React from "react";
-import ImportantMessages from "../ImportantMessages";
-import Message from "../Message";
+import React from 'react';
+import ImportantMessages from '../ImportantMessages';
+import Message from '../Message';
+import styles from './style.module.css';
 
 const messagesData = [
   {
@@ -28,7 +29,6 @@ const messagesData = [
     isImportant: false,
   },
 ];
-
 
 class MessageDashboard extends React.Component {
   constructor(props) {
@@ -83,10 +83,10 @@ class MessageDashboard extends React.Component {
 
     const newMessages = [];
 
-    for(let i = 0; i < messages.length; i++) {
+    for (let i = 0; i < messages.length; i++) {
       const message = structuredClone(messages[i]);
 
-      if(message.id === id) {
+      if (message.id === id) {
         message.isImportant = true;
       }
 
@@ -94,9 +94,9 @@ class MessageDashboard extends React.Component {
     }
 
     this.setState({
-      messages: newMessages
+      messages: newMessages,
     });
-  }
+  };
 
   filterImportantMessages = (message) => message.isImportant;
 
@@ -108,8 +108,12 @@ class MessageDashboard extends React.Component {
     return (
       <>
         <div>
-          <p>Sort order is {isDirectSort ? 'direct': 'reversed'}</p>
-          <button onClick={this.sortMessages}>Reverse order</button>
+          <p className={styles.display}>
+            Sort order is {isDirectSort ? 'direct' : 'reversed'}
+          </p>
+          <button className={styles.btn} onClick={this.sortMessages}>
+            Reverse order
+          </button>
         </div>
         <div>
           <ImportantMessages messages={importantMessagesArr} />

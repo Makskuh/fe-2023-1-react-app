@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import './style.css';
 import RadioInput from './RadioInput';
-import CONSTANTS from '../../constants';
 import Select from './Select';
+import CONSTANTS from '../../constants';
+import styles from './style.module.css';
 const { ACCOUNT_TYPES } = CONSTANTS;
+
+
 
 function loginUser(email, password) {
   if (!email || !password) {
@@ -58,10 +60,10 @@ class LoginForm extends Component {
       this.state;
 
     return (
-      <form onSubmit={this.submitHandler} className='form'>
+      <form onSubmit={this.submitHandler} className={styles.form}>
         <input
           onChange={this.handleChange}
-          className='input'
+          className={styles.input}
           type='email'
           name='email'
           placeholder='Email'
@@ -69,7 +71,7 @@ class LoginForm extends Component {
         />
         <input
           onChange={this.handleChange}
-          className='input'
+          className={styles.input}
           type='password'
           name='password'
           placeholder='Password'
@@ -105,7 +107,7 @@ class LoginForm extends Component {
           />{' '}
           Remember me
         </label>
-        <button className='btn'>Submit</button>
+        <button className={styles.btn}>Submit</button>
       </form>
     );
   }

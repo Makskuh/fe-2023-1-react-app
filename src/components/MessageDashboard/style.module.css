@@ -1,0 +1,13 @@
+.display {
+  padding: 10px;
+  text-align: right;
+  color: red;
+}
+
+.btn{
+  max-width: 200px;
+  color: red;
+  font-style: italic;
+  font-size: 20px;
+  border: none;
+}

@@ -1,14 +1,18 @@
+@import '../../common/styles/variables';
+@import '../../common/styles/templates';
+
 .display {
   padding: 10px;
   text-align: right;
-  color: red;
+  color: $main-color;
 
   @media screen and (max-width: 768px) {
-    color: blue;
+    color: $secondary-color;
   }
 }
 
 .btn{
+  @extend %btn;
   max-width: 200px;
   color: red;
   font-style: italic;

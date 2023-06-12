@@ -47,7 +47,8 @@ class App extends React.Component {
         <button onClick={this.handleIsVisible}>Toggle Visibility</button>
         {isVisible && <StopWatch />}
         <LoginForm />
-        <MessageDashboard /> */}
+         */}
+         <MessageDashboard />
         <List title='Мої покупки' products={products}>
           <li>Something</li>
           <li>Something 2</li>
@@ -65,9 +66,9 @@ class App extends React.Component {
             alt='Cat'
           />
         </Image>
-
+{/* 
         <Message />
-        <Message text="some text" />
+        <Message text="some text" /> */}
       </>
     );
   }

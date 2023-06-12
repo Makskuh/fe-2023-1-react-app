@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+// import cx from 'classnames';
 import './style.css';
 
 class Message extends React.Component {
@@ -28,8 +30,14 @@ class Message extends React.Component {
 
     const readStatusElem = <p>Message is read</p>;
 
+    // const className1 = classNames('string1', 'string2', 'string3');
+    // const className2 = classNames({ string1: false });
+    // const className3 = classNames('string0', { string1: true });
+
+    const className = classNames('message', {isImportant: isImportant, });
+
     return (
-      <article className={`message${isImportant ? ' isImportant' : ''}`}>
+      <article className={className}>
         <p>Author: {author}</p>
         <p>Message: {text}</p>
         <button onClick={this.handleClick}>Read message</button>
@@ -53,7 +61,7 @@ Message.defaultProps = {
   text: 'PUT SOME TEXT PROP',
   author: 'WHO KNOWS, GIVE AUTHOR PROP',
   makeImportant: () => {},
-  id: -1
-}
+  id: -1,
+};
 
 export default Message;

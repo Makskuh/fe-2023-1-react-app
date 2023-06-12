@@ -70,10 +70,7 @@ class MessageDashboard extends React.Component {
   mapMessages = (message, index, arr) => (
     <Message
       key={message.id}
-      id={message.id}
-      text={message.text}
-      author={message.author}
-      isImportant={message.isImportant}
+      {...message}
       makeImportant={this.makeImportant}
     />
   );

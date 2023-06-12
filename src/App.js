@@ -56,9 +56,13 @@ class App extends React.Component {
           height='500px'
           onClick={this.clickCatHandler}
           title='Black cat'
-          src='https://cdn.britannica.com/25/172925-050-DC7E2298/black-cat-back.jpg'
-          alt='Cat'
-        />
+          style={{border: '10px solid black'}}
+        >
+          <img
+            src='https://cdn.britannica.com/25/172925-050-DC7E2298/black-cat-back.jpg'
+            alt='Cat'
+          />
+        </Image>
       </>
     );
   }

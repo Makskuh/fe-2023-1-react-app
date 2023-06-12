@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import cx from 'classnames';
-import './style.css';
+import styles from './style.module.scss';
 
 class Message extends React.Component {
   constructor(props) {
@@ -34,7 +34,9 @@ class Message extends React.Component {
     // const className2 = classNames({ string1: false });
     // const className3 = classNames('string0', { string1: true });
 
-    const className = classNames('message', {isImportant: isImportant, });
+    const className = classNames(styles.message, {
+      [styles.isImportant]: isImportant,
+    });
 
     return (
       <article className={className}>

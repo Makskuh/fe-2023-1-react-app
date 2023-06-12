@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
 class Message extends React.Component {
@@ -38,6 +39,21 @@ class Message extends React.Component {
       </article>
     );
   }
+}
+
+Message.propTypes = {
+  text: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  isImportant: PropTypes.bool,
+  makeImportant: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+};
+
+Message.defaultProps = {
+  text: 'PUT SOME TEXT PROP',
+  author: 'WHO KNOWS, GIVE AUTHOR PROP',
+  makeImportant: () => {},
+  id: -1
 }
 
 export default Message;

@@ -5,6 +5,8 @@ import MessageDashboard from './components/MessageDashboard';
 import ReviewDashboard from './components/ReviewDashboard';
 import List from './components/List';
 import Image from './components/Image';
+import Greeting from './components/Greeting';
+import Message from './components/Message';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -63,6 +65,9 @@ class App extends React.Component {
             alt='Cat'
           />
         </Image>
+
+        <Message />
+        <Message text="some text" />
       </>
     );
   }

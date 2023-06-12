@@ -4,7 +4,7 @@ import LoginForm from './components/LoginForm';
 import MessageDashboard from './components/MessageDashboard';
 import ReviewDashboard from './components/ReviewDashboard';
 import List from './components/List';
-
+import Image from './components/Image';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -30,10 +30,14 @@ class App extends React.Component {
     });
   };
 
+  clickCatHandler = () => {
+    alert('You clicked on cat!');
+  };
+
   render() {
     const { isVisible, products, friends } = this.state;
 
-    React.createElement('p', {title: 'Title 2'}, 'text' );
+    React.createElement('p', { title: 'Title 2' }, 'text');
 
     return (
       <>
@@ -47,9 +51,14 @@ class App extends React.Component {
           <li>Something 2</li>
           <li>Something 3</li>
         </List>
-        <List title='Мої друзі' >
-          test
-        </List>
+        <Image
+          width='900px'
+          height='500px'
+          onClick={this.clickCatHandler}
+          title='Black cat'
+          src='https://cdn.britannica.com/25/172925-050-DC7E2298/black-cat-back.jpg'
+          alt='Cat'
+        />
       </>
     );
   }

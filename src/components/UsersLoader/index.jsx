@@ -6,17 +6,30 @@ class UsersLoader extends Component {
 
     this.state = {
       users: [],
-      isLoading: true,
+      isLoading: false,
       isError: false,
+      currentPage: 1,
     };
   }
 
   componentDidMount() {
-    fetch('https://randomuser.me/api/?page=1&results=10&seed=testSeed')
+    this.load();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.currentPage !== this.state.currentPage) {
+      this.load();
+    }
+  }
+
+  load = () => {
+    const { currentPage } = this.state;
+    this.setState({ isLoading: true });
+    fetch(
+      `https://randomuser.me/api/?page=${currentPage}&results=10&seed=testSeed`
+    )
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
-
         this.setState({ users: data.results });
       })
       .catch((error) => {
@@ -27,7 +40,21 @@ class UsersLoader extends Component {
       .finally(() => {
         this.setState({ isLoading: false });
       });
-  }
+  };
+
+  prev = () => {
+    const { currentPage } = this.state;
+    this.setState({
+      currentPage: currentPage > 1 ? currentPage - 1 : 1,
+    });
+  };
+  next = () => {
+    const { currentPage } = this.state;
+
+    this.setState({
+      currentPage: currentPage + 1,
+    });
+  };
 
   render() {
     const { users, isLoading, isError } = this.state;
@@ -44,7 +71,15 @@ class UsersLoader extends Component {
       return <h1>Loading users...</h1>;
     }
 
-    return <div>{userCards}</div>;
+    return (
+      <div>
+        <div>
+          <button onClick={this.prev}>Previous page</button>
+          <button onClick={this.next}>Next page</button>
+        </div>
+        {userCards}
+      </div>
+    );
   }
 }
 

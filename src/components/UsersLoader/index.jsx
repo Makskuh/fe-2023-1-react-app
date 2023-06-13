@@ -17,7 +17,15 @@ class UsersLoader extends Component {
       .then((data) => {
         // console.log(data);
 
-        this.setState({ users: data.results, isLoading: false });
+        this.setState({ users: data.results });
+      })
+      .catch((error) => {
+        this.setState({
+          isError: true,
+        });
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
       });
   }
 

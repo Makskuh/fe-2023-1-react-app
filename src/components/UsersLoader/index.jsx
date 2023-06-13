@@ -12,7 +12,7 @@ class UsersLoader extends Component {
   }
 
   componentDidMount() {
-    fetch('https://randomuser.me/api/')
+    fetch('https://randomuser.me/api/?page=1&results=10&seed=testSeed')
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);

@@ -1,12 +1,6 @@
 import React from 'react';
-import StopWatch from './components/StopWatch';
-import LoginForm from './components/LoginForm';
-import MessageDashboard from './components/MessageDashboard';
-import ReviewDashboard from './components/ReviewDashboard';
-import List from './components/List';
-import Image from './components/Image';
-import Greeting from './components/Greeting';
-import Message from './components/Message';
+import UsersLoader from './components/UsersLoader';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -39,36 +33,11 @@ class App extends React.Component {
   render() {
     const { isVisible, products, friends } = this.state;
 
-    React.createElement('p', { title: 'Title 2' }, 'text');
+
 
     return (
       <>
-        {/* <ReviewDashboard />
-        <button onClick={this.handleIsVisible}>Toggle Visibility</button>
-        {isVisible && <StopWatch />}
-        <LoginForm />
-         */}
-         <MessageDashboard />
-        <List title='Мої покупки' products={products}>
-          <li>Something</li>
-          <li>Something 2</li>
-          <li>Something 3</li>
-        </List>
-        <Image
-          width='900px'
-          height='500px'
-          onClick={this.clickCatHandler}
-          title='Black cat'
-          style={{ border: '10px solid black' }}
-        >
-          <img
-            src='https://cdn.britannica.com/25/172925-050-DC7E2298/black-cat-back.jpg'
-            alt='Cat'
-          />
-        </Image>
-{/* 
-        <Message />
-        <Message text="some text" /> */}
+        <UsersLoader />
       </>
     );
   }

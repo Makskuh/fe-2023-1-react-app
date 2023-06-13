@@ -25,7 +25,7 @@ class UsersLoader extends Component {
   load = () => {
     const { currentPage } = this.state;
     this.setState({ isLoading: true });
-    getUsers(currentPage)
+    getUsers({page: currentPage, results: 10, nat: 'ua'})
       .then((data) => {
         this.setState({ users: data.results });
       })

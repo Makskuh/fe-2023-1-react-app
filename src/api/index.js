@@ -1,4 +1,5 @@
 import queryString from 'query-string';
+import CONSTANTS from '../constants';
 
 /**
  *
@@ -13,10 +14,10 @@ export const getUsers = (options = {}) => {
 
   const defaultOptions = {
     page: 1,
-    results: 10,
-    seed: 'testSeed',
-    format: 'json',
-    inc: ['gender', 'name', 'email', 'login', 'picture'],
+    results: CONSTANTS.RESULTS,
+    seed: CONSTANTS.API_KEY,
+    format: CONSTANTS.FORMAT,
+    inc: CONSTANTS.DEFAULT_USER_DATA,
   };
 
   const finalOptions = {
@@ -24,9 +25,9 @@ export const getUsers = (options = {}) => {
     ...options,
   };
 
-  const str = queryString.stringify(finalOptions, {arrayFormat: 'comma'});
+  const str = queryString.stringify(finalOptions, { arrayFormat: 'comma' });
 
-  const response = fetch(`https://randomuser.me/api/?${str}`).then((response) =>
+  const response = fetch(`${CONSTANTS.BASE_URL}?${str}`).then((response) =>
     response.json()
   );
 

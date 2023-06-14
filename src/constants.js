@@ -13,11 +13,15 @@ const CONSTANTS = {
       TEXT_VALUE: 'Administrator',
     },
   },
-  SERVER_URL: 'https://test.com',
   THEMES: {
     LIGHT: 'light',
     DARK: 'dark',
   },
+  BASE_URL: 'https://randomuser.me/api/',
+  RESULTS: 10,
+  FORMAT: 'json',
+  API_KEY: 'testSeed',
+  DEFAULT_USER_DATA: ['gender', 'name', 'email', 'login', 'picture'],
 };
 
 export default CONSTANTS;

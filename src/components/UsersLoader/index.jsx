@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {getUsers} from '../../api';
+import { getUsers } from '../../api';
 class UsersLoader extends Component {
   constructor(props) {
     super(props);
@@ -25,9 +25,9 @@ class UsersLoader extends Component {
   load = () => {
     const { currentPage } = this.state;
     this.setState({ isLoading: true });
-    getUsers({page: currentPage, results: 10, nat: 'ua'})
+    getUsers({ page: currentPage, results: 10, nat: 'ua' })
       .then((data) => {
-        this.setState({ users: data.results });
+        // this.setState({ users: data.results });
       })
       .catch((error) => {
         this.setState({
@@ -60,13 +60,15 @@ class UsersLoader extends Component {
       <article key={user.login.uuid}>{JSON.stringify(user)}</article>
     ));
 
-    if (isError) {
-      return <h1>Error happened</h1>;
-    }
+    // if (isError) {
+    //   return <h1>Error happened</h1>;
+    // }
 
-    if (isLoading) {
-      return <h1>Loading users...</h1>;
-    }
+    // if (isLoading) {
+    //   return <h1>Loading users...</h1>;
+    // }
+
+    const isThereUsers = users.length !== 0 && !isLoading;
 
     return (
       <div>
@@ -74,7 +76,9 @@ class UsersLoader extends Component {
           <button onClick={this.prev}>Previous page</button>
           <button onClick={this.next}>Next page</button>
         </div>
-        {userCards}
+        {isError && <h1>Error happened</h1>}
+        {isLoading && <h1>Loading users...</h1>}
+        {isThereUsers ? userCards : <h1>Users not found</h1>}
       </div>
     );
   }

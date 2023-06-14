@@ -54,27 +54,37 @@ class App extends React.Component {
 
         <Switch>
           <Route exact path='/'>
-            <Home />
+            {(libProps) => <Home {...libProps} />}
           </Route>
 
-          <Route path='/about'>
-            <About />
-          </Route>
+          <Route path='/about' component={About} />
 
-          <Route path='/contacts'>
-            <Contacts />
-          </Route>
+          <Route
+            path='/contacts'
+            render={(libProps) => <Contacts {...libProps} />}
+          />
         </Switch>
-
-
-
       </BrowserRouter>
     );
   }
 }
 
-const Home = () => <div>Home</div>;
-const About = () => <div>About</div>;
-const Contacts = () => <div>Contacts</div>;
+const Home = (props) => {
+  console.log(props);
+  return <div>Home</div>;
+};
+
+const About = (props) => {
+  console.log(props);
+
+  setTimeout(() => props.history.push('/'), 3000);
+
+  return <div>About</div>;
+};
+
+const Contacts = (props) => {
+  console.log(props);
+  return <div>Contacts</div>;
+};
 
 export default App;

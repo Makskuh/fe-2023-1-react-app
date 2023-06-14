@@ -33,11 +33,20 @@ class App extends React.Component {
   render() {
     const { isVisible, products, friends } = this.state;
 
-
-
     return (
       <>
         <UsersLoader />
+        <button
+          onClick={() => window.location.assign('https://randomuser.me/')}
+        >
+          Assign
+        </button>
+        <button
+          onClick={() => window.location.replace('https://randomuser.me/')}
+        >
+          Replace
+        </button>
+        <button onClick={() => window.location.reload()}>Reload</button>
       </>
     );
   }

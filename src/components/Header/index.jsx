@@ -1,26 +1,22 @@
 import React from 'react';
-
-// class Header extends React.Component {
-//   render() {
-//     console.log(this.props);
-//     const { titleText } = this.props;
-
-//     return (
-//       <header id='header' className='class' title={titleText}>
-//         <h1>My Site</h1>
-//         <nav>This is nav</nav>
-//       </header>
-//     );
-//   }
-// }
+import { Link } from 'react-router-dom';
 
 function Header(props) {
-  const { titleText } = props;
-  
   return (
-    <header id='header' className='class' title={titleText}>
-      <h1>My Site</h1>
-      <nav>This is nav</nav>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/about'>About</Link>
+          </li>
+          <li>
+            <Link to='/contacts'>Contacts</Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }

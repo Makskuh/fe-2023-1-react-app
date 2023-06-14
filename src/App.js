@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import UsersLoader from './components/UsersLoader';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -36,28 +37,12 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
-        <header>
-          <nav>
-            <ul>
-              <li>
-                <Link to='/'>Home</Link>
-              </li>
-              <li>
-                <Link to='/about'>About</Link>
-              </li>
-              <li>
-                <Link to='/contacts'>Contacts</Link>
-              </li>
-            </ul>
-          </nav>
-        </header>
-
         <Switch>
           <Route exact path='/'>
-            {(libProps) => <Home {...libProps} />}
+            {(libProps) => <HomePage {...libProps} />}
           </Route>
 
-          <Route path='/about' component={About} />
+          <Route path='/about' component={AboutPage} />
 
           <Route
             path='/contacts'
@@ -70,19 +55,6 @@ class App extends React.Component {
     );
   }
 }
-
-const Home = (props) => {
-  console.log(props);
-  return <div>Home</div>;
-};
-
-const About = (props) => {
-  console.log(props);
-
-  setTimeout(() => props.history.push('/'), 3000);
-
-  return <div>About</div>;
-};
 
 const Contacts = (props) => {
   console.log(props);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import UsersLoader from './components/UsersLoader';
 
 class App extends React.Component {
@@ -34,22 +35,46 @@ class App extends React.Component {
     const { isVisible, products, friends } = this.state;
 
     return (
-      <>
-        <UsersLoader />
-        <button
-          onClick={() => window.location.assign('https://randomuser.me/')}
-        >
-          Assign
-        </button>
-        <button
-          onClick={() => window.location.replace('https://randomuser.me/')}
-        >
-          Replace
-        </button>
-        <button onClick={() => window.location.reload()}>Reload</button>
-      </>
+      <BrowserRouter>
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <Link to='/'>Home</Link>
+              </li>
+              <li>
+                <Link to='/about'>About</Link>
+              </li>
+              <li>
+                <Link to='/contacts'>Contacts</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+
+          <Route path='/about'>
+            <About />
+          </Route>
+
+          <Route path='/contacts'>
+            <Contacts />
+          </Route>
+        </Switch>
+
+
+
+      </BrowserRouter>
     );
   }
 }
+
+const Home = () => <div>Home</div>;
+const About = () => <div>About</div>;
+const Contacts = () => <div>Contacts</div>;
 
 export default App;

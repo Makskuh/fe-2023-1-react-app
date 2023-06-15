@@ -1,13 +1,25 @@
 import React from 'react';
+import { UserContext } from '../../../../../contexts';
 
 function UserData(props) {
-  const { user } = props;
+  // return (
+  //   <div>
+  //     <h4>
+  //       {user.firstName} {user.lastName}
+  //     </h4>
+  //   </div>
+  // );
+
   return (
-    <div>
-      <h4>
-        {user.firstName} {user.lastName}
-      </h4>
-    </div>
+    <UserContext.Consumer>
+      {(user) => (
+        <div>
+          <h4>
+            {user.firstName} {user.lastName}
+          </h4>
+        </div>
+      )}
+    </UserContext.Consumer>
   );
 }
 

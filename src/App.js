@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import PostsPage from './pages/PostsPage';
 import Tree from './components/Tree';
-
+import { UserContext } from './contexts';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -32,6 +32,8 @@ class App extends React.Component {
   render() {
     const { user } = this.state;
 
+    console.log(UserContext);
+
     // return (
     //   <BrowserRouter>
     //     <Switch>
@@ -52,11 +54,18 @@ class App extends React.Component {
     //   </BrowserRouter>
     // );
 
-    return <Tree user={user} />
+    return (
+      <>
+        <UserContext.Provider value={user}>
+          <Tree />
+        </UserContext.Provider>
+        <C1 />
+      </>
+    );
   }
 }
 
-const Contacts = (props) => {
+const C1 = (props) => {
   console.log(props);
   return <div>Contacts</div>;
 };

@@ -15,6 +15,9 @@ function Header(props) {
           <li>
             <Link to='/contacts'>Contacts</Link>
           </li>
+          <li>
+            <Link to='/posts'>Posts</Link>
+          </li>
         </ul>
       </nav>
     </header>

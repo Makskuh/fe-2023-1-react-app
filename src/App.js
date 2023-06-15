@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
+import PostsPage from './pages/PostsPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class App extends React.Component {
           </Route>
 
           <Route path='/about' component={AboutPage} />
+          <Route path='/posts' component={PostsPage} />
 
           <Route
             path='/contacts'

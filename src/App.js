@@ -58,16 +58,19 @@ class App extends React.Component {
       <>
         <UserContext.Provider value={user}>
           <Tree />
+          <Sidebar />
         </UserContext.Provider>
-        <C1 />
       </>
     );
   }
 }
 
-const C1 = (props) => {
-  console.log(props);
-  return <div>Contacts</div>;
+const Sidebar = (props) => {
+  return (
+    <UserContext.Consumer>
+      {(user) => <div>{JSON.stringify(user)}</div>}
+    </UserContext.Consumer>
+  );
 };
 
 const NotFound = () => <div>404 Page not found</div>;

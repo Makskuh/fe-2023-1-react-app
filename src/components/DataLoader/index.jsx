@@ -35,15 +35,16 @@ export class DataLoader extends Component {
   };
 
   render() {
-    const { render } = this.props;
-    const layout = render(this.state);
-    return layout;
+    const { render, children } = this.props;
+    // const layout = render(this.state);
+    // return layout;
+    return children(this.state);
   }
 }
 
 DataLoader.propTypes = {
   loadData: PropTypes.func.isRequired,
-  render: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
 };
 
 export default DataLoader;

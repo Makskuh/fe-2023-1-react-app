@@ -23,7 +23,7 @@ function PostsPage() {
   return (
     <>
       <Header />
-      <DataLoader loadData={getPosts} render={postsLayout} />
+      <DataLoader loadData={getPosts}>{postsLayout}</DataLoader>
     </>
   );
 }

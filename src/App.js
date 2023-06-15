@@ -3,23 +3,19 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import PostsPage from './pages/PostsPage';
+import Tree from './components/Tree';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isVisible: true,
-      products: [
-        { name: 'Product 1', quantity: 5 },
-        { name: 'Product 2', quantity: 3 },
-        { name: 'Product 3', quantity: 1 },
-      ],
-      friends: [
-        { id: 1, name: 'Friend 1', profilePic: 'pic1.png' },
-        { id: 2, name: 'Friend 2', profilePic: 'pic2.png' },
-        { id: 3, name: 'Friend 3', profilePic: 'pic3.png' },
-      ],
+      user: {
+        id: 1,
+        firstName: 'User',
+        lastName: 'Userenko',
+        imageSrc: 'picture.jpeg',
+      },
     };
   }
 
@@ -34,27 +30,29 @@ class App extends React.Component {
   };
 
   render() {
-    const { isVisible, products, friends } = this.state;
+    const { user } = this.state;
 
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path='/'>
-            {(libProps) => <HomePage {...libProps} />}
-          </Route>
+    // return (
+    //   <BrowserRouter>
+    //     <Switch>
+    //       <Route exact path='/'>
+    //         {(libProps) => <HomePage {...libProps} />}
+    //       </Route>
 
-          <Route path='/about' component={AboutPage} />
-          <Route path='/posts' component={PostsPage} />
+    //       <Route path='/about' component={AboutPage} />
+    //       <Route path='/posts' component={PostsPage} />
 
-          <Route
-            path='/contacts'
-            render={(libProps) => <Contacts {...libProps} />}
-          />
+    //       <Route
+    //         path='/contacts'
+    //         render={(libProps) => <Contacts {...libProps} />}
+    //       />
 
-          <Route path='*' component={NotFound} />
-        </Switch>
-      </BrowserRouter>
-    );
+    //       <Route path='*' component={NotFound} />
+    //     </Switch>
+    //   </BrowserRouter>
+    // );
+
+    return <Tree user={user} />
   }
 }
 

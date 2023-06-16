@@ -1,0 +1,14 @@
+@import '../../common/styles/templates';
+
+.container {
+  border: 2px solid black;
+  padding: 30px;
+}
+
+.lightTheme {
+  @extend %lightTheme;
+}
+
+.darkTheme {
+  @extend %darkTheme;
+}

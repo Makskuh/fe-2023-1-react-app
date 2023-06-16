@@ -4,7 +4,11 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import PostsPage from './pages/PostsPage';
 import Tree from './components/Tree';
-import { UserContext } from './contexts';
+import { UserContext, ThemeContext } from './contexts';
+import CONSTANTS from './constants';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,23 +20,18 @@ class App extends React.Component {
         lastName: 'Userenko',
         imageSrc: 'picture.jpeg',
       },
+      theme: CONSTANTS.THEMES.DARK,
     };
   }
 
-  handleIsVisible = () => {
+  changeTheme = (newTheme) => {
     this.setState({
-      isVisible: !this.state.isVisible,
+      theme: newTheme,
     });
   };
 
-  clickCatHandler = () => {
-    alert('You clicked on cat!');
-  };
-
   render() {
-    const { user } = this.state;
-
-    console.log(UserContext);
+    const { user, theme } = this.state;
 
     // return (
     //   <BrowserRouter>
@@ -54,24 +53,26 @@ class App extends React.Component {
     //   </BrowserRouter>
     // );
 
+    // const props = {
+    //   // value: {
+    //   //   theme,
+    //   //   changeTheme: this.changeTheme
+    //   // }
+    //   // value: [theme, this.changeTheme]
+    // }
+
     return (
-      <>
+      <ThemeContext.Provider value={[theme, this.changeTheme]}>
         <UserContext.Provider value={user}>
           <Tree />
           <Sidebar />
         </UserContext.Provider>
-      </>
+      </ThemeContext.Provider>
     );
   }
 }
 
-const Sidebar = (props) => {
-  return (
-    <UserContext.Consumer>
-      {(user) => <div>{JSON.stringify(user)}</div>}
-    </UserContext.Consumer>
-  );
-};
+
 
 const NotFound = () => <div>404 Page not found</div>;
 

@@ -7,34 +7,35 @@ import styles from './UserData.module.scss';
 const { THEMES } = CONSTANTS;
 
 function UserData(props) {
-  /*
-  
-
-  
-  */
-
+  const { user } = props;
   return (
-    <UserContext.Consumer>
-      {(user) => (
-        <ThemeContext.Consumer>
-          {([theme]) => {
-            const className = classNames({
-              [styles.darkTheme]: theme === THEMES.DARK,
-              [styles.lightTheme]: theme === THEMES.LIGHT,
-            });
+    <ThemeContext.Consumer>
+      {([theme]) => {
+        const className = classNames({
+          [styles.darkTheme]: theme === THEMES.DARK,
+          [styles.lightTheme]: theme === THEMES.LIGHT,
+        });
 
-            return (
-              <div className={className}>
-                <h4>
-                  {user.firstName} {user.lastName}
-                </h4>
-              </div>
-            );
-          }}
-        </ThemeContext.Consumer>
-      )}
-    </UserContext.Consumer>
+        return (
+          <div className={className}>
+            <h4>
+              {user.firstName} {user.lastName}
+            </h4>
+          </div>
+        );
+      }}
+    </ThemeContext.Consumer>
   );
 }
 
-export default UserData;
+function withUser(Component) {
+  const ComponentWithUser = (props) => (
+    <UserContext.Consumer>
+      {(user) => <Component user={user} {...props} />}
+    </UserContext.Consumer>
+  );
+
+  return ComponentWithUser;
+}
+
+export default withUser(UserData);

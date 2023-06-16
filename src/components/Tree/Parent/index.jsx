@@ -5,7 +5,7 @@ function Parent(props) {
   return (
     <div style={{ border: '5px solid red', padding: '20px' }}>
       <h2>Parent</h2>
-      <Child user={props.user} />
+      <Child />
     </div>
   );
 }

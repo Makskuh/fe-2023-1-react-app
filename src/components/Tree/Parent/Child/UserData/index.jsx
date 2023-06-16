@@ -1,41 +1,27 @@
 import React from 'react';
 import classNames from 'classnames';
-import { UserContext, ThemeContext } from '../../../../../contexts';
 import CONSTANTS from '../../../../../constants';
 import styles from './UserData.module.scss';
+import { withTheme, withUser } from '../../../../../HOCs';
 
 const { THEMES } = CONSTANTS;
 
 function UserData(props) {
-  const { user } = props;
+  const { user, theme } = props;
+
+  const className = classNames({
+    [styles.darkTheme]: theme === THEMES.DARK,
+    [styles.lightTheme]: theme === THEMES.LIGHT,
+  });
+
   return (
-    <ThemeContext.Consumer>
-      {([theme]) => {
-        const className = classNames({
-          [styles.darkTheme]: theme === THEMES.DARK,
-          [styles.lightTheme]: theme === THEMES.LIGHT,
-        });
-
-        return (
-          <div className={className}>
-            <h4>
-              {user.firstName} {user.lastName}
-            </h4>
-          </div>
-        );
-      }}
-    </ThemeContext.Consumer>
+    <div className={className}>
+      <h4>
+        {user.firstName} {user.lastName}
+      </h4>
+    </div>
   );
 }
 
-function withUser(Component) {
-  const ComponentWithUser = (props) => (
-    <UserContext.Consumer>
-      {(user) => <Component user={user} {...props} />}
-    </UserContext.Consumer>
-  );
 
-  return ComponentWithUser;
-}
-
-export default withUser(UserData);
+export default withUser(withTheme(UserData));

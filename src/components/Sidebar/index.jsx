@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
-import { UserContext, ThemeContext } from '../../contexts';
 import CONSTANTS from '../../constants';
 import styles from './Sidebar.module.scss';
+import { withTheme, withUser } from '../../HOCs';
 
 const { THEMES } = CONSTANTS;
 
@@ -33,45 +33,7 @@ function Sidebar(props) {
   );
 }
 
-// function SidebarWithUser(props) {
-//   return (
-//     <UserContext.Consumer>
-//       {(user) => <Sidebar user={user} {...props} />}
-//     </UserContext.Consumer>
-//   );
-// }
-
-// function SidebarWithUserAndTheme(props) {
-//   return (
-//     <ThemeContext.Consumer>
-//       {([theme, switchTheme]) => (
-//         <SidebarWithUser theme={theme} switchTheme={switchTheme} />
-//       )}
-//     </ThemeContext.Consumer>
-//   );
-// }
-
-function withUser(Component) {
-  const ComponentWithUser = (props) => (
-    <UserContext.Consumer>
-      {(user) => <Component user={user} {...props} />}
-    </UserContext.Consumer>
-  );
-
-  return ComponentWithUser;
-}
-
 const SidebarWithUser = withUser(Sidebar);
-
-const withTheme = (Component) => (props) =>
-  (
-    <ThemeContext.Consumer>
-      {([theme, switchTheme]) => (
-        <Component theme={theme} switchTheme={switchTheme} {...props} />
-      )}
-    </ThemeContext.Consumer>
-  );
-
 const SidebarWithUserAndTheme = withTheme(SidebarWithUser);
 
 export default SidebarWithUserAndTheme;

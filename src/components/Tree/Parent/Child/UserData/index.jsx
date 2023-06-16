@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
-import CONSTANTS from '../../../../../constants';
+import CONSTANTS from 'constants';
 import styles from './UserData.module.scss';
-import { withTheme, withUser } from '../../../../../HOCs';
+import { withTheme, withUser } from 'HOCs';
 
 const { THEMES } = CONSTANTS;
 

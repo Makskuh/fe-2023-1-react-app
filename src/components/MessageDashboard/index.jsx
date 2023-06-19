@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ImportantMessages from '../ImportantMessages';
 import Message from '../Message';
 import styles from './style.module.scss';
@@ -30,25 +30,11 @@ const messagesData = [
   },
 ];
 
-class MessageDashboard extends React.Component {
-  constructor(props) {
-    super(props);
+function MessageDashboard(props) {
+  const [messages, setMessages] = useState(structuredClone(messagesData));
+  const [isDirectSort, setIsDirectSort] = useState(true);
 
-    this.state = {
-      messages: structuredClone(messagesData),
-      isDirectSort: true,
-    };
-  }
-
-  sortMessages = () => {
-    const { messages, isDirectSort } = this.state;
-
-    /*
-      1. взяти масив с даними
-      2. відсортувати його
-      3. оновити стан
-    */
-
+  const sortMessages = () => {
     const copy = structuredClone(messages);
 
     copy.sort((a, b) => {
@@ -61,23 +47,15 @@ class MessageDashboard extends React.Component {
       return a.id - b.id;
     });
 
-    this.setState({
-      messages: copy,
-      isDirectSort: !isDirectSort,
-    });
+    setMessages(copy);
+    setIsDirectSort(!isDirectSort);
   };
 
-  mapMessages = (message, index, arr) => (
-    <Message
-      key={message.id}
-      {...message}
-      makeImportant={this.makeImportant}
-    />
+  const mapMessages = (message, index, arr) => (
+    <Message key={message.id} {...message} makeImportant={makeImportant} />
   );
 
-  makeImportant = (id) => {
-    const { messages } = this.state;
-
+  const makeImportant = (id) => {
     const newMessages = [];
 
     for (let i = 0; i < messages.length; i++) {
@@ -90,35 +68,30 @@ class MessageDashboard extends React.Component {
       newMessages.push(message);
     }
 
-    this.setState({
-      messages: newMessages,
-    });
+    setMessages(newMessages);
   };
 
-  filterImportantMessages = (message) => message.isImportant;
+  const filterImportantMessages = (message) => message.isImportant;
 
-  render() {
-    const { messages, isDirectSort } = this.state;
-    const importantMessagesArr = messages.filter(this.filterImportantMessages);
-    const messagesArray = messages.map(this.mapMessages);
+  const importantMessagesArr = messages.filter(filterImportantMessages);
+  const messagesArray = messages.map(mapMessages);
 
-    return (
-      <>
-        <div>
-          <p className={styles.display}>
-            Sort order is {isDirectSort ? 'direct' : 'reversed'}
-          </p>
-          <button className={styles.btn} onClick={this.sortMessages}>
-            Reverse order
-          </button>
-        </div>
-        <div>
-          <ImportantMessages messages={importantMessagesArr} />
-        </div>
-        {messagesArray}
-      </>
-    );
-  }
+  return (
+    <>
+      <div>
+        <p className={styles.display}>
+          Sort order is {isDirectSort ? 'direct' : 'reversed'}
+        </p>
+        <button className={styles.btn} onClick={sortMessages}>
+          Reverse order
+        </button>
+      </div>
+      <div>
+        <ImportantMessages messages={importantMessagesArr} />
+      </div>
+      {messagesArray}
+    </>
+  );
 }
 
 export default MessageDashboard;

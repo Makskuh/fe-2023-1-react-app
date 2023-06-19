@@ -9,6 +9,7 @@ import CONSTANTS from './constants';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Counter from 'components/Counter';
+import MessageDashboard from 'components/MessageDashboard';
 
 class App extends React.Component {
   constructor(props) {
@@ -60,6 +61,7 @@ class App extends React.Component {
     return (
       <>
         <Counter />
+        <MessageDashboard />
       </>
     );
   }

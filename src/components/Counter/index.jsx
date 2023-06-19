@@ -1,33 +1,26 @@
 import React, { useState } from 'react';
 
 function Counter(props) {
-  const [state, setState] = useState({
-    clicks: 0,
+  const [clicks, setClicks] = useState(0);
+  const [coords, setCoords] = useState({
     x: 0,
     y: 0,
   });
 
   const add = (e) => {
-    setState({
-      ...state,
-      clicks: state.clicks + 1,
-    });
+    setClicks(clicks + 1);
   };
 
   const subtract = () => {
-    setState({
-      ...state,
-      clicks: state.clicks - 1,
-    });
+    setClicks(clicks - 1);
   };
 
   const mouseMoveHandler = (e) => {
     const { clientX, clientY } = e;
 
-    setState({
-      ...state,
+    setCoords({
       x: clientX,
-      y: clientY
+      y: clientY,
     });
   };
 
@@ -39,9 +32,9 @@ function Counter(props) {
       }}
       onMouseMove={mouseMoveHandler}
     >
-      <p>Counter is {state.clicks}</p>
-      <p>X coordinate is {state.x}</p>
-      <p>Y coordinate is {state.y}</p>
+      <p>Counter is {clicks}</p>
+      <p>X coordinate is {coords.x}</p>
+      <p>Y coordinate is {coords.y}</p>
       <button onClick={add}>Add</button>
       <button onClick={subtract}>Subtract</button>
     </div>

@@ -8,6 +8,7 @@ import { UserContext, ThemeContext } from './contexts';
 import CONSTANTS from './constants';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import Counter from 'components/Counter';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,21 +34,20 @@ class App extends React.Component {
   render() {
     const { user, theme } = this.state;
 
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path='/'>
-            {(libProps) => <HomePage {...libProps} />}
-          </Route>
+    // return (
+    //   <BrowserRouter>
+    //     <Switch>
+    //       <Route exact path='/'>
+    //         {(libProps) => <HomePage {...libProps} />}
+    //       </Route>
 
-          <Route path='/about' component={AboutPage} />
-          <Route path='/posts' component={PostsPage} />
+    //       <Route path='/about' component={AboutPage} />
+    //       <Route path='/posts' component={PostsPage} />
 
-
-          <Route path='*' component={NotFound} />
-        </Switch>
-      </BrowserRouter>
-    );
+    //       <Route path='*' component={NotFound} />
+    //     </Switch>
+    //   </BrowserRouter>
+    // );
 
     // const props = {
     //   // value: {
@@ -57,19 +57,13 @@ class App extends React.Component {
     //   // value: [theme, this.changeTheme]
     // }
 
-    // return (
-    //   <ThemeContext.Provider value={[theme, this.changeTheme]}>
-    //     <UserContext.Provider value={user}>
-    //       <Tree />
-    //       <Sidebar />
-          
-    //     </UserContext.Provider>
-    //   </ThemeContext.Provider>
-    // );
+    return (
+      <>
+        <Counter />
+      </>
+    );
   }
 }
-
-
 
 const NotFound = () => <div>404 Page not found</div>;
 

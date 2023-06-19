@@ -10,45 +10,27 @@ class Counter extends React.Component {
   }
 
   add = () => {
-    console.log('+');
-
     this.setState({
       count: this.state.count + 1,
     });
   };
 
-  subtract() {
-    console.log('-');
+  subtract = () => {
+    this.setState({
+      count: this.state.count - 1,
+    });
   }
 
   render() {
     const { count } = this.state;
 
-    const p = React.createElement('p', {}, `Count is: ${count}`);
-    const add = React.createElement(
-      'button',
-      {
-        onClick: this.add,
-      },
-      'Add'
+    return (
+      <>
+        <p>Count is {count}</p>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.subtract}>Subtract</button>
+      </>
     );
-
-    const subtract = React.createElement(
-      'button',
-      {
-        onClick: this.subtract,
-      },
-      'Subtract'
-    );
-
-    const fragment = React.createElement(
-      React.Fragment,
-      null,
-      p,
-      add,
-      subtract
-    );
-    return fragment;
   }
 }
 

@@ -1,72 +1,29 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import PostsPage from './pages/PostsPage';
-import Tree from './components/Tree';
-import { UserContext, ThemeContext } from './contexts';
-import CONSTANTS from './constants';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
+import React, { useState } from 'react';
 import Counter from 'components/Counter';
-import MessageDashboard from 'components/MessageDashboard';
+import CONSTANTS from './constants';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+function App() {
+  const [user, setUser] = useState({
+    id: 1,
+    firstName: 'User',
+    lastName: 'Userenko',
+    imageSrc: 'picture.jpeg',
+  });
+  const [theme, setTheme] = useState(CONSTANTS.THEMES.DARK);
+  const [isVisible, setIsVisible] = useState(true);
 
-    this.state = {
-      user: {
-        id: 1,
-        firstName: 'User',
-        lastName: 'Userenko',
-        imageSrc: 'picture.jpeg',
-      },
-      theme: CONSTANTS.THEMES.DARK,
-    };
-  }
-
-  changeTheme = (newTheme) => {
-    this.setState({
-      theme: newTheme,
-    });
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
   };
 
-  render() {
-    const { user, theme } = this.state;
-
-    // return (
-    //   <BrowserRouter>
-    //     <Switch>
-    //       <Route exact path='/'>
-    //         {(libProps) => <HomePage {...libProps} />}
-    //       </Route>
-
-    //       <Route path='/about' component={AboutPage} />
-    //       <Route path='/posts' component={PostsPage} />
-
-    //       <Route path='*' component={NotFound} />
-    //     </Switch>
-    //   </BrowserRouter>
-    // );
-
-    // const props = {
-    //   // value: {
-    //   //   theme,
-    //   //   changeTheme: this.changeTheme
-    //   // }
-    //   // value: [theme, this.changeTheme]
-    // }
-
-    return (
-      <>
-        <Counter />
-        <MessageDashboard />
-      </>
-    );
-  }
+  return (
+    <>
+      <div>
+        <button onClick={toggleVisibility}>Toggle visibility</button>
+      </div>
+      {isVisible && <Counter />}
+    </>
+  );
 }
-
-const NotFound = () => <div>404 Page not found</div>;
 
 export default App;

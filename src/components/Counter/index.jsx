@@ -7,29 +7,26 @@ function Counter(props) {
     y: 0,
   });
 
-  useEffect(
-    function effectHandler() {
-      const add = (e) => {
-        console.log(clicks);
-        setClicks(clicks + 1);
-      };
-      // ComponentDidMount + DidUpdate
-      console.log('use effect callback');
-      window.addEventListener('click', add);
+  useEffect(function effectHandler() {
+    // ComponentDidMount + DidUpdate
+    console.log('use effect callback');
+    window.addEventListener('mousemove', mouseMoveHandler);
 
-      // ComponentWillUnmount
-      return function clearEffects() {
-        console.log('effects cleared');
-        window.removeEventListener('click', add);
-      };
-    },
-    [clicks]
-  );
+    // ComponentWillUnmount
+    return function clearEffects() {
+      console.log('effects cleared');
+      window.removeEventListener('mousemove', mouseMoveHandler);
+    };
+  }, []);
 
-  // const add = (e) => {
-  //   console.log(clicks);
-  //   setClicks(clicks + 1);
-  // };
+  useEffect(() => {
+    document.title = `Current count is ${clicks}`;
+  }, [clicks]);
+
+  const add = (e) => {
+    console.log(clicks);
+    setClicks(clicks + 1);
+  };
 
   const subtract = () => {
     setClicks(clicks - 1);
@@ -45,7 +42,6 @@ function Counter(props) {
   };
 
   // window.addEventListener('mousemove', mouseMoveHandler);
-  document.title = `Clicked ${clicks} times`;
   return (
     <div
       style={{
@@ -56,8 +52,8 @@ function Counter(props) {
       <p>Counter is {clicks}</p>
       <p>X coordinate is {coords.x}</p>
       <p>Y coordinate is {coords.y}</p>
-      {/* <button onClick={add}>Add</button>
-      <button onClick={subtract}>Subtract</button> */}
+      <button onClick={add}>Add</button>
+      <button onClick={subtract}>Subtract</button>
     </div>
   );
 }

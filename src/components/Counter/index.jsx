@@ -25,8 +25,21 @@ function Counter(props) {
 
   const add = (e) => {
     console.log(clicks);
-    setClicks(clicks + 1);
+    function handleNewClick(oldClicks) {
+      console.log(oldClicks);
+      return oldClicks + 1;
+    }
+
+    setClicks(handleNewClick);
   };
+
+  // useEffect(() => {
+  //   window.addEventListener('click', add);
+
+  //   return () => {
+  //     window.removeEventListener('click', add);
+  //   };
+  // }, [add]);
 
   const subtract = () => {
     setClicks(clicks - 1);

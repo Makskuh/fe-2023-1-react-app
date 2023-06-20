@@ -7,21 +7,29 @@ function Counter(props) {
     y: 0,
   });
 
-  useEffect(function effectHandler() {
-    // ComponentDidMount + DidUpdate
-    console.log('use effect callback');
-    window.addEventListener('mousemove', mouseMoveHandler);
+  useEffect(
+    function effectHandler() {
+      const add = (e) => {
+        console.log(clicks);
+        setClicks(clicks + 1);
+      };
+      // ComponentDidMount + DidUpdate
+      console.log('use effect callback');
+      window.addEventListener('click', add);
 
-    // ComponentWillUnmount
-    return function clearEffects() {
-      console.log('effects cleared');
-      window.removeEventListener('mousemove', mouseMoveHandler);
-    };
-  });
+      // ComponentWillUnmount
+      return function clearEffects() {
+        console.log('effects cleared');
+        window.removeEventListener('click', add);
+      };
+    },
+    [clicks]
+  );
 
-  const add = (e) => {
-    setClicks(clicks + 1);
-  };
+  // const add = (e) => {
+  //   console.log(clicks);
+  //   setClicks(clicks + 1);
+  // };
 
   const subtract = () => {
     setClicks(clicks - 1);
@@ -48,8 +56,8 @@ function Counter(props) {
       <p>Counter is {clicks}</p>
       <p>X coordinate is {coords.x}</p>
       <p>Y coordinate is {coords.y}</p>
-      <button onClick={add}>Add</button>
-      <button onClick={subtract}>Subtract</button>
+      {/* <button onClick={add}>Add</button>
+      <button onClick={subtract}>Subtract</button> */}
     </div>
   );
 }

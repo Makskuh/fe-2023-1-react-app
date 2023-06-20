@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
 import CONSTANTS from '../../constants';
 import styles from './Sidebar.module.scss';
+import { UserContext, ThemeContext } from 'contexts';
 import { withTheme, withUser } from '../../HOCs';
 
 const { THEMES } = CONSTANTS;
 
 function Sidebar(props) {
-  const { user, theme, switchTheme } = props;
+  const user = useContext(UserContext);
+  const [theme, switchTheme] = useContext(ThemeContext);
 
   const className = classNames(styles.container, {
     [styles.darkTheme]: theme === THEMES.DARK,
@@ -33,7 +35,4 @@ function Sidebar(props) {
   );
 }
 
-const SidebarWithUser = withUser(Sidebar);
-const SidebarWithUserAndTheme = withTheme(SidebarWithUser);
-
-export default SidebarWithUserAndTheme;
+export default Sidebar;

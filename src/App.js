@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Counter from 'components/Counter';
 import CONSTANTS from './constants';
+import StopWatch from 'components/StopWatch';
 
 function App() {
   const [user, setUser] = useState({
@@ -10,7 +11,7 @@ function App() {
     imageSrc: 'picture.jpeg',
   });
   const [theme, setTheme] = useState(CONSTANTS.THEMES.DARK);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -22,6 +23,7 @@ function App() {
         <button onClick={toggleVisibility}>Toggle visibility</button>
       </div>
       {isVisible && <Counter />}
+      <StopWatch />
     </>
   );
 }

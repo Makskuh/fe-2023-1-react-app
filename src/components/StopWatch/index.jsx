@@ -1,66 +1,64 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './style.module.css';
-class StopWatch extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      currentTime: 0,
+function StopWatch(props) {
+  const [currentTime, setCurrentTime] = useState(0);
+  const [intervalId, setIntervalId] = useState(null);
+
+  useEffect(() => {
+    start();
+    console.log('DidMount');
+
+    return () => {
+      stop();
+      console.log('WillUnmount');
     };
-    this.intervalId = null;
-  }
+  }, []);
 
-  start = () => {
-    // const { currentTime } = this.state;
-    if (this.intervalId) {
+  function start() {
+    console.log('start func');
+    console.log(intervalId);
+    if (intervalId) {
       return;
     }
 
-    this.intervalId = setInterval(() => {
-      console.log('interval');
-      this.setState({
-        currentTime: this.state.currentTime + 1,
-      });
+    const newIntervalId = setInterval(() => {
+      setCurrentTime((oldTime) => oldTime + 1);
     }, 1000);
-  };
 
-  stop = () => {
-    clearInterval(this.intervalId);
-    this.intervalId = null;
-  };
-
-  componentDidMount() {
-    console.log('componentDidMount');
-    this.start();
+    setIntervalId(newIntervalId);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log('componentDidUpdate');
+  function stop() {
+    console.log('stop func');
+
+    setIntervalId((intervalId) => {
+      clearInterval(intervalId);
+      return null;
+    });
   }
 
-  componentWillUnmount() {
-    console.log('componentWillUnmount');
-    this.stop();
-  }
+  // componentDidMount() {
+  //   console.log('componentDidMount');
+  //   this.start();
+  // }
 
-  render() {
-    const { currentTime } = this.state;
+  // componentWillUnmount() {
+  //   console.log('componentWillUnmount');
+  //   this.stop();
+  // }
 
-    // this.setState({ currentTime: this.state.currentTime + 1 });
-    // this.start();
-
-    return (
-      <section className={styles.container}>
-        <p className={styles.display}>{currentTime}</p>
-        <button className={`${styles.btn} ${styles.startBtn}`} onClick={this.start}>
-          Start
-        </button>
-        <button className={`${styles.btn} ${styles.stopBtn}`} onClick={this.stop}>
-          Stop
-        </button>
-      </section>
-    );
-  }
+  return (
+    <section className={styles.container}>
+      <p className={styles.display}>{currentTime}</p>
+      <button className={`${styles.btn} ${styles.startBtn}`} onClick={start}>
+        Start
+      </button>
+      <button className={`${styles.btn} ${styles.stopBtn}`} onClick={stop}>
+        Stop
+      </button>
+    </section>
+  );
 }
 
 export default StopWatch;

@@ -27,9 +27,9 @@ function App() {
           <button onClick={toggleVisibility}>Toggle visibility</button>
         </div>
         {isVisible && <Counter />}
-        <StopWatch />
+        {/* <StopWatch />
         <Sidebar />
-        <PostsLoader />
+        <PostsLoader /> */}
       </ThemeContext.Provider>
     </UserContext.Provider>
   );

@@ -6,17 +6,23 @@ import React, { useState, useEffect, useRef } from 'react';
 
 function Counter(props) {
   const [clicks, setClicks] = useState(0);
+  const prevClicks = useRef(null);
+  const renders = useRef(1);
   const divRef = useRef(null);
-  const coords = useCoords(divRef);
+  // const testRef = useRef('test');
+  // const coords = useCoords(divRef);
 
   useEffect(() => {
     document.title = `Current count is ${clicks}`;
   }, [clicks]);
 
+  useEffect(() => {
+    renders.current = renders.current + 1;
+  });
+
   const add = (e) => {
-    console.log(clicks);
     function handleNewClick(oldClicks) {
-      console.log(oldClicks);
+      prevClicks.current = oldClicks;
       return oldClicks + 1;
     }
 
@@ -34,7 +40,10 @@ function Counter(props) {
     setClicks(clicks - 1);
   };
 
-  // console.log(divRef.current);
+  // console.log(testRef.current);
+
+  // testRef.current = 'what is this magic';
+
   return (
     <div
       style={{
@@ -44,8 +53,10 @@ function Counter(props) {
       ref={divRef}
     >
       <p>Counter is {clicks}</p>
-      <p>X coordinate is {coords.x}</p>
-      <p>Y coordinate is {coords.y}</p>
+      <p>Previously there was {prevClicks.current} clicks</p>
+      <p>There was {renders.current} renders</p>
+      {/* <p>X coordinate is {coords.x}</p>
+      <p>Y coordinate is {coords.y}</p> */}
       <button onClick={add}>Add</button>
       <button onClick={subtract}>Subtract</button>
     </div>

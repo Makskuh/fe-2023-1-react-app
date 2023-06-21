@@ -4,6 +4,7 @@ import CONSTANTS from './constants';
 import StopWatch from 'components/StopWatch';
 import { UserContext, ThemeContext } from 'contexts';
 import Sidebar from 'components/Sidebar';
+import PostsLoader from 'components/PostsLoader';
 
 function App() {
   const [user, setUser] = useState({
@@ -28,6 +29,7 @@ function App() {
         {isVisible && <Counter />}
         <StopWatch />
         <Sidebar />
+        <PostsLoader />
       </ThemeContext.Provider>
     </UserContext.Provider>
   );

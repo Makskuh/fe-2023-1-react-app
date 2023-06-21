@@ -5,6 +5,7 @@ import StopWatch from 'components/StopWatch';
 import { UserContext, ThemeContext } from 'contexts';
 import Sidebar from 'components/Sidebar';
 import PostsLoader from 'components/PostsLoader';
+import MemoExample from 'components/MemoExample';
 
 function App() {
   const [user, setUser] = useState({
@@ -28,8 +29,10 @@ function App() {
         </div>
         {isVisible && <Counter />}
         {/* <StopWatch />
-        <Sidebar />
+        
         <PostsLoader /> */}
+        <Sidebar />
+        <MemoExample />
       </ThemeContext.Provider>
     </UserContext.Provider>
   );

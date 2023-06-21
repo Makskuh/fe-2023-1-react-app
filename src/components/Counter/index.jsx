@@ -1,23 +1,12 @@
+import { useCoords } from 'hooks';
 import React, { useState, useEffect } from 'react';
+
+// Створити користувацький хук useCoords 
+// який буде слідкувати за рухами миши користувача
 
 function Counter(props) {
   const [clicks, setClicks] = useState(0);
-  const [coords, setCoords] = useState({
-    x: 0,
-    y: 0,
-  });
-
-  useEffect(function effectHandler() {
-    // ComponentDidMount + DidUpdate
-    console.log('use effect callback');
-    window.addEventListener('mousemove', mouseMoveHandler);
-
-    // ComponentWillUnmount
-    return function clearEffects() {
-      console.log('effects cleared');
-      window.removeEventListener('mousemove', mouseMoveHandler);
-    };
-  }, []);
+  const coords = useCoords();
 
   useEffect(() => {
     document.title = `Current count is ${clicks}`;
@@ -44,17 +33,6 @@ function Counter(props) {
   const subtract = () => {
     setClicks(clicks - 1);
   };
-
-  const mouseMoveHandler = (e) => {
-    const { clientX, clientY } = e;
-
-    setCoords({
-      x: clientX,
-      y: clientY,
-    });
-  };
-
-  // window.addEventListener('mousemove', mouseMoveHandler);
   return (
     <div
       style={{

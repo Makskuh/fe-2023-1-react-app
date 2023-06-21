@@ -1,18 +1,26 @@
 import { useEffect, useState } from 'react';
 
-function useCoords() {
+function useCoords(elementRef) {
   const [coords, setCoords] = useState({
     x: 0,
     y: 0,
   });
 
   useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
+    // console.log(elementRef);
+    const elem = elementRef.current;
+    if (elem) {
+      elem.addEventListener('mousemove', handleMouseMove);
+    }
+    // window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      if (elem) {
+        elem.removeEventListener('mousemove', handleMouseMove);
+      }
+      // window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [elementRef]);
 
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;

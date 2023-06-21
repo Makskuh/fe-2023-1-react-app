@@ -14,7 +14,7 @@ function App() {
     imageSrc: 'picture.jpeg',
   });
   const [theme, setTheme] = useState(CONSTANTS.THEMES.DARK);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);

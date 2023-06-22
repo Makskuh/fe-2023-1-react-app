@@ -1,0 +1,7 @@
+const ACTION_TYPES = {
+  ADD: 'ADD',
+  SUBTRACT: 'SUBTRACT',
+  CHANGE_STEP: 'CHANGE_STEP',
+};
+
+export default ACTION_TYPES;

@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import reducer from './reducer';
+import ACTION_TYPES from './actionTypes';
 
 /*
   за допомогою useReducer переробити компонент Counter
@@ -18,17 +19,17 @@ function Counter(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const add = () => {
-    const action = { type: 'add' };
+    const action = { type: ACTION_TYPES.ADD };
     dispatch(action);
   };
 
   const subtract = () => {
-    const action = {type: 'subtract'};
+    const action = { type: ACTION_TYPES.SUBTRACT };
     dispatch(action);
   };
 
   const changeStep = (e) => {
-    const action = { type: 'changeStep', payload: +e.target.value };
+    const action = { type: ACTION_TYPES.CHANGE_STEP, payload: +e.target.value };
     dispatch(action);
   };
 

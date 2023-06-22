@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import Counter from 'components/Counter';
-import CONSTANTS from './constants';
-import StopWatch from 'components/StopWatch';
+import { Switch, Route } from 'react-router-dom';
 import { UserContext, ThemeContext } from 'contexts';
-import Sidebar from 'components/Sidebar';
-import PostsLoader from 'components/PostsLoader';
-import MemoExample from 'components/MemoExample';
+import CONSTANTS from './constants';
+import HomePage from 'pages/HomePage';
+import SignUpPage from 'pages/SignUpPage';
+
 
 function App() {
   const [user, setUser] = useState({
@@ -15,24 +14,15 @@ function App() {
     imageSrc: 'picture.jpeg',
   });
   const [theme, setTheme] = useState(CONSTANTS.THEMES.DARK);
-  const [isVisible, setIsVisible] = useState(true);
-
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
-  };
 
   return (
     <UserContext.Provider value={user}>
       <ThemeContext.Provider value={[theme, setTheme]}>
-        <div>
-          <button onClick={toggleVisibility}>Toggle visibility</button>
-        </div>
-        {isVisible && <Counter />}
-        {/* <StopWatch />
-        
-        <PostsLoader /> */}
-        <Sidebar />
-        <MemoExample />
+        <Switch>
+          <Route path="/" exact component={HomePage}/>
+          <Route path="/signup" exact component={SignUpPage}/>
+        </Switch>
+
       </ThemeContext.Provider>
     </UserContext.Provider>
   );

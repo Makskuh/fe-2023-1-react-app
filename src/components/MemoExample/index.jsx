@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+} from 'react';
 import classNames from 'classnames';
 import { ThemeContext } from 'contexts';
 import styles from './MemoExample.module.scss';
@@ -20,20 +26,45 @@ function MemoExample(props) {
   const [number, setNumber] = useState(1);
   const [theme] = useContext(ThemeContext);
 
-  const result = useMemo(function memoCallback() {
-    return computeValue(number);
-  }, [number]);
-  
+  const result = useMemo(
+    function memoCallback() {
+      return computeValue(number);
+    },
+    [number]
+  );
+
   // const result = computeValue(number);
-  const handleChange = (e) => {
+
+  // const handleChange = (e) => {
+  //   const {
+  //     target: { value },
+  //   } = e;
+
+  //   setNumber(+value);
+  // };
+
+  const handleChange = useCallback((e) => {
     const {
       target: { value },
     } = e;
 
-    // console.log(typeof value);
-
     setNumber(+value);
-  };
+  }, []);
+
+  // const handleChange = useMemo(
+  //   () => (e) => {
+  //     const {
+  //       target: { value },
+  //     } = e;
+
+  //     setNumber(+value);
+  //   },
+  //   []
+  // );
+
+  useEffect(() => {
+    console.log('function created');
+  }, [handleChange]);
 
   const classes = classNames({
     [styles.darkTheme]: theme === THEMES.DARK,

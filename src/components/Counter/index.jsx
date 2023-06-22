@@ -1,64 +1,71 @@
-import { useCoords } from 'hooks';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useReducer } from 'react';
 
-// Створити користувацький хук useCoords
-// який буде слідкувати за рухами миши користувача
+/*
+  за допомогою useReducer переробити компонент Counter
+  лічільник має збільшуквати і зменшувати значення
+
+  * також в стані зберігати значення кроку, переробит код так 
+    щоб додавався і віднімався саме крок. Також зробити можливим зміну кроку
+*/
+
+function reducer(state, action) {
+  const { type, payload } = action;
+  if (type === 'add') {
+    const newState = {
+      ...state,
+      counterValue: state.counterValue + state.step,
+    };
+
+    return newState;
+  } else if (type === 'subtract') {
+    const newState = {
+      ...state,
+      counterValue: state.counterValue - state.step,
+    };
+
+    return newState;
+  } else if (type === 'changeStep') {
+    const newState = {
+      ...state,
+      step: payload,
+    };
+
+    return newState;
+  }
+
+  return state;
+}
+
+const initialState = {
+  counterValue: 0,
+  step: 1,
+};
 
 function Counter(props) {
-  const [clicks, setClicks] = useState(0);
-  const prevClicks = useRef(null);
-  const renders = useRef(1);
-  const divRef = useRef(null);
-  // const testRef = useRef('test');
-  // const coords = useCoords(divRef);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
-    document.title = `Current count is ${clicks}`;
-  }, [clicks]);
-
-  useEffect(() => {
-    renders.current = renders.current + 1;
-  });
-
-  const add = (e) => {
-    function handleNewClick(oldClicks) {
-      prevClicks.current = oldClicks;
-      return oldClicks + 1;
-    }
-
-    setClicks(handleNewClick);
+  const add = () => {
+    const action = { type: 'add' };
+    dispatch(action);
   };
-
-  // useEffect(() => {
-  //   window.addEventListener('click', add);
-  //   return () => {
-  //     window.removeEventListener('click', add);
-  //   };
-  // }, [add]);
 
   const subtract = () => {
-    setClicks(clicks - 1);
+    const action = {type: 'subtract'};
+    dispatch(action);
   };
 
-  // console.log(testRef.current);
-
-  // testRef.current = 'what is this magic';
+  const changeStep = (e) => {
+    const action = { type: 'changeStep', payload: +e.target.value };
+    dispatch(action);
+  };
 
   return (
-    <div
-      style={{
-        padding: '40px',
-        border: '5px solid black',
-      }}
-      ref={divRef}
-    >
-      <p>Counter is {clicks}</p>
-      <p>Previously there was {prevClicks.current} clicks</p>
-      <p>There was {renders.current} renders</p>
-      {/* <p>X coordinate is {coords.x}</p>
-      <p>Y coordinate is {coords.y}</p> */}
+    <div>
+      <p>Count is : {state.counterValue}</p>
+      <p>Step is : {state.step}</p>
       <button onClick={add}>Add</button>
       <button onClick={subtract}>Subtract</button>
+      <input type='number' value={state.step} onChange={changeStep} />
     </div>
   );
 }

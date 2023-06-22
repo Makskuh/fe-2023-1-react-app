@@ -4,6 +4,7 @@ import { UserContext, ThemeContext } from 'contexts';
 import CONSTANTS from './constants';
 import HomePage from 'pages/HomePage';
 import SignUpPage from 'pages/SignUpPage';
+import Counter from 'components/Counter';
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
           <Route path="/" exact component={HomePage}/>
           <Route path="/signup" exact component={SignUpPage}/>
         </Switch>
-
+        <Counter />
       </ThemeContext.Provider>
     </UserContext.Provider>
   );

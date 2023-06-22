@@ -15,21 +15,32 @@ const initialState = {
   step: 1,
 };
 
+function createAddAction() {
+  return { type: ACTION_TYPES.ADD };
+}
+function createSubtractAction() {
+  return { type: ACTION_TYPES.SUBTRACT };
+}
+
+function createSetStepAction(newStep) {
+  return { type: ACTION_TYPES.CHANGE_STEP, payload: newStep };
+}
+
 function Counter(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const add = () => {
-    const action = { type: ACTION_TYPES.ADD };
+    const action = createAddAction();
     dispatch(action);
   };
 
   const subtract = () => {
-    const action = { type: ACTION_TYPES.SUBTRACT };
+    const action = createSubtractAction();
     dispatch(action);
   };
 
   const changeStep = (e) => {
-    const action = { type: ACTION_TYPES.CHANGE_STEP, payload: +e.target.value };
+    const action = createSetStepAction(+e.target.value);
     dispatch(action);
   };
 

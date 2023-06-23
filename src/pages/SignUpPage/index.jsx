@@ -3,20 +3,19 @@ import * as yup from 'yup';
 import Header from 'components/Header';
 import SignUpForm from 'components/forms/SignUpForm';
 
+const NAME_SCHEMA = yup
+  .string()
+  .matches(/^[A-Z][a-z]{1,16}$/)
+  .required();
+
 const SIGN_UP_SCHEMA = yup.object({
   email: yup.string().email().required(),
   password: yup
     .string()
     .matches(/^(?=.{0,}[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!#$%^&*]).{8,32}$/)
     .required(),
-  firstName: yup
-    .string()
-    .matches(/^[A-Z][a-z]{1,16}$/)
-    .required(),
-  lastName: yup
-    .string()
-    .matches(/^[A-Z][a-z]{1,16}$/)
-    .required(),
+  firstName: NAME_SCHEMA,
+  lastName: NAME_SCHEMA,
 });
 
 const user1 = {

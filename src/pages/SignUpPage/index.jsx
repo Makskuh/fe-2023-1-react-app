@@ -27,7 +27,7 @@ function SignUpPage() {
   // при успішній валідації повертає відвалідоване значення
   // інакше кидає помилку
   // console.log(SIGN_UP_SCHEMA.validate(user2));
-  console.log(SIGN_UP_SCHEMA.validateSync(user2));
+  // console.log(SIGN_UP_SCHEMA.validateSync(user2));
 
   return (
     <>

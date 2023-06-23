@@ -23,7 +23,6 @@ function App() {
           <Route path="/" exact component={HomePage}/>
           <Route path="/signup" exact component={SignUpPage}/>
         </Switch>
-        <Counter />
       </ThemeContext.Provider>
     </UserContext.Provider>
   );

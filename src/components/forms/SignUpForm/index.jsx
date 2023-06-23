@@ -25,6 +25,7 @@ function SignUpForm(props) {
     >
       {(props) => {
         console.log(props);
+        const condition = Object.entries(props.errors).length > 0;
         return (
           <Form>
             <Field name='firstName' placeholder='firstName' />
@@ -42,7 +43,9 @@ function SignUpForm(props) {
             <Field name='password' type='password' placeholder='password' />
             <ErrorMessage name='password' component={'div'} />
             <Field name='isAgree' type='checkbox' />
-            <button type='submit'>Submit</button>
+            <button type='submit' disabled={condition}>
+              Submit
+            </button>
           </Form>
         );
       }}

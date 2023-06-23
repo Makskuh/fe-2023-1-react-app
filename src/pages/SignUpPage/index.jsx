@@ -1,22 +1,9 @@
 import React from 'react';
-import * as yup from 'yup';
 import Header from 'components/Header';
 import SignUpForm from 'components/forms/SignUpForm';
+import { SIGN_UP_SCHEMA } from 'utils/validationSchemas';
 
-const NAME_SCHEMA = yup
-  .string()
-  .matches(/^[A-Z][a-z]{1,16}$/)
-  .required();
 
-const SIGN_UP_SCHEMA = yup.object({
-  email: yup.string().email().required(),
-  password: yup
-    .string()
-    .matches(/^(?=.{0,}[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!#$%^&*]).{8,32}$/)
-    .required(),
-  firstName: NAME_SCHEMA,
-  lastName: NAME_SCHEMA,
-});
 
 const user1 = {
   firstName: 'Test',
@@ -40,7 +27,7 @@ function SignUpPage() {
   // при успішній валідації повертає відвалідоване значення
   // інакше кидає помилку
   // console.log(SIGN_UP_SCHEMA.validate(user2));
-  // console.log(SIGN_UP_SCHEMA.validateSync(user2));
+  console.log(SIGN_UP_SCHEMA.validateSync(user2));
 
   return (
     <>

@@ -23,14 +23,29 @@ function SignUpForm(props) {
       onSubmit={onSumbit}
       validationSchema={SIGN_UP_SCHEMA}
     >
-      <Form>
-        <Field name='firstName' placeholder='firstName' />
-        <Field name='lastName' placeholder='lastName' />
-        <Field name='email' type='email' placeholder='email' />
-        <Field name='password' type='password' placeholder='password' />
-        <Field name='isAgree' type='checkbox' />
-        <button type='submit'>Submit</button>
-      </Form>
+      {(props) => {
+        console.log(props);
+        return (
+          <Form>
+            <Field name='firstName' placeholder='firstName' />
+            <ErrorMessage name='firstName'>
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
+            <Field name='lastName' placeholder='lastName' />
+            <ErrorMessage
+              name='lastName'
+              component={'div'}
+              style={{ color: 'red' }}
+            />
+            <Field name='email' type='email' placeholder='email' />
+            <ErrorMessage name='email' component={'div'} />
+            <Field name='password' type='password' placeholder='password' />
+            <ErrorMessage name='password' component={'div'} />
+            <Field name='isAgree' type='checkbox' />
+            <button type='submit'>Submit</button>
+          </Form>
+        );
+      }}
     </Formik>
   );
 }

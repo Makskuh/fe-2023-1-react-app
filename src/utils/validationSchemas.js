@@ -13,4 +13,5 @@ export const SIGN_UP_SCHEMA = yup.object({
     .required(),
   firstName: NAME_SCHEMA,
   lastName: NAME_SCHEMA,
+  isAgree: yup.boolean().required(),
 });

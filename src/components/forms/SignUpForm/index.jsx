@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { SIGN_UP_SCHEMA } from 'utils/validationSchemas';
 
 const initialState = {
   firstName: '',
@@ -17,7 +18,11 @@ function SignUpForm(props) {
   };
 
   return (
-    <Formik initialValues={initialState} onSubmit={onSumbit}>
+    <Formik
+      initialValues={initialState}
+      onSubmit={onSumbit}
+      validationSchema={SIGN_UP_SCHEMA}
+    >
       <Form>
         <Field name='firstName' placeholder='firstName' />
         <Field name='lastName' placeholder='lastName' />

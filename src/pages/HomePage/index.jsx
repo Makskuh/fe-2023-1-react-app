@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from '../../components/Header';
+import ToDo from 'components/ToDo';
 
 function HomePage(page) {
   return <>
     <Header />
     <main>
-      main page
+      <ToDo />
     </main>
   </>;
 }

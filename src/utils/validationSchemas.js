@@ -15,3 +15,10 @@ export const SIGN_UP_SCHEMA = yup.object({
   lastName: NAME_SCHEMA,
   isAgree: yup.boolean().required(),
 });
+
+
+export const TODO_TASK_SCHEMA = Yup.object({
+  todo: Yup.string()
+    .required('Empty field')
+    .matches(/^\S/, 'Task cannot start with a space'),
+});

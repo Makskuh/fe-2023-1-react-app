@@ -9,9 +9,7 @@ import CONSTANTS from '../constants';
  * @param {string} [options.seed]
  * @returns
  */
-export const getUsers = (options = {}) => {
-  // const { page, results, format, nat, seed, include } = options;
-
+export const getUsers = async function getAsyncUser(options = {}) {
   const defaultOptions = {
     page: 1,
     results: CONSTANTS.RESULTS,
@@ -27,9 +25,7 @@ export const getUsers = (options = {}) => {
 
   const str = queryString.stringify(finalOptions, { arrayFormat: 'comma' });
 
-  const response = fetch(`${CONSTANTS.BASE_URL}?${str}`).then((response) =>
-    response.json()
-  );
-
-  return response;
+  const response = await fetch(`${CONSTANTS.BASE_URL}?${str}`);
+  const data = await response.json();
+  return data;
 };

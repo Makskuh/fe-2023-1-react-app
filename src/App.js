@@ -44,20 +44,33 @@ async function test() {
 
 console.log(test());
 
-function test2() {
-  // const promise = fetch('https://jsonplaceholder.typicode.com/posts');
-
-  // const promise2 = promise.then((response) => response.json());
-
-  // const result = promise2.then((data) => {
-  //   console.log(data);
-  //   return data;
-  // });
-
-  return fetch('https://jsonplaceholder.typicode.com/posts')
-    .then((response) => response.json())
-    .then((posts) => console.log(posts));
+async function testErrors() {
+  try {
+    const response = await fetch('https://jsonp.dfd/posts');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log('Oh no');
+    console.log(error);
+  }
 }
+
+testErrors();
+
+// function test2() {
+//   // const promise = fetch('https://jsonplaceholder.typicode.com/posts');
+
+//   // const promise2 = promise.then((response) => response.json());
+
+//   // const result = promise2.then((data) => {
+//   //   console.log(data);
+//   //   return data;
+//   // });
+
+//   return fetch('https://jsonplaceholder.typicode.com/posts')
+//     .then((response) => response.json())
+//     .then((posts) => console.log(posts));
+// }
 
 // test().then((data) => console.log(data));
 // test2();

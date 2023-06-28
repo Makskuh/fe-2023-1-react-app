@@ -17,8 +17,8 @@ export const SIGN_UP_SCHEMA = yup.object({
 });
 
 
-export const TODO_TASK_SCHEMA = Yup.object({
-  todo: Yup.string()
+export const TODO_TASK_SCHEMA = yup.object({
+  todo: yup.string()
     .required('Empty field')
     .matches(/^\S/, 'Task cannot start with a space'),
 });
